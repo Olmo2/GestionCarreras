@@ -1,4 +1,4 @@
-package com.olmo.Corredores;
+package com.olmo.negocio.Corredores;
 
 import java.sql.Date;
 

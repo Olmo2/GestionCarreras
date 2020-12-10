@@ -1,11 +1,11 @@
-package com.olmo.Carreras;
+package com.olmo.negocio.Carreras;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.olmo.Corredores.Corredor;
-import com.olmo.Corredores.Dorsal;
+import com.olmo.negocio.Corredores.Corredor;
+import com.olmo.negocio.Corredores.Dorsal;
 
 public class Carrera {
 	
@@ -13,6 +13,7 @@ public class Carrera {
 	private Date fecha;
 	private String lugar;
 	private int maxPart;
+	private List<Corredor> participantes;
 	private Map<Corredor, Dorsal> corredores;
 	
 	
@@ -20,12 +21,13 @@ public class Carrera {
 		super();
 	}
 
-	public Carrera(String nombre, Date fecha, String lugar, int maxPart, Map<Corredor, Dorsal> corredores) {
+	public Carrera(String nombre, Date fecha, String lugar, int maxPart,List<Corredor>participantes, Map<Corredor, Dorsal> corredores) {
 		super();
 		Nombre = nombre;
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.maxPart = maxPart;
+		this.participantes=participantes;
 		this.corredores = corredores;
 	}
 	
@@ -53,6 +55,16 @@ public class Carrera {
 	public void setMaxPart(int maxPart) {
 		this.maxPart = maxPart;
 	}
+	
+	
+	public List<Corredor> getParticipantes() {
+		return participantes;
+	}
+
+	public void setParticipantes(List<Corredor> participantes) {
+		this.participantes = participantes;
+	}
+
 	public Map<Corredor, Dorsal> getCorredores() {
 		return corredores;
 	}
@@ -63,7 +75,7 @@ public class Carrera {
 	@Override
 	public String toString() {
 		return "Carrera [Nombre=" + Nombre + ", fecha=" + fecha + ", lugar=" + lugar + ", maxPart=" + maxPart
-				+ ", corredores=" + corredores + "]";
+				+ ", participantes=" + participantes + ", corredores=" + corredores + "]";
 	}
 	
 	
