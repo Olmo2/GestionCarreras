@@ -5,9 +5,20 @@
  */
 package com.olmo.GUI;
 
+import com.olmo.GUI.Alta.AltaCarreras;
 import com.olmo.GUI.Baja.BajaCorredores;
 import com.olmo.GUI.Alta.AltaCorredores;
 import com.olmo.GUI.Modificar.ModificarCorredores;
+import com.olmo.logica.Operaciones;
+import com.olmo.negocio.Carreras.Carrera;
+import com.olmo.negocio.Corredores.Corredor;
+import com.olmo.negocio.Corredores.Dorsal;
+import java.util.ArrayList;
+import java.sql.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,13 +32,30 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+  
+     private ArrayList<Carrera> lista;
+     private DefaultTableModel dtm;
+     Operaciones op;
+     AltaCarreras altaCarreras;
     public Principal() {
         initComponents();
         corredores = new Corredores(this,true);
+        op=new Operaciones();
          setLocationRelativeTo(null);
+         Corredor  corredor =new Corredor("Olmo","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
+         Dorsal dorsal = new Dorsal(60,73);
+         Map<Corredor,Dorsal> map =new LinkedHashMap<Corredor,Dorsal>();
+         map.put(corredor, dorsal);
+       
+         Carrera c = new Carrera("Clásica de Boonta Eve", new Date(99,04,19),"Tatooine",10,map,map);
+         lista=new ArrayList<Carrera>();
+       op.anadirCarrera(c, lista);
+         op.inicializarTablaCarrera(dtm,jTableCarreras);
+        op.anadirCarreras(dtm, lista, jTableCarreras);
+         
     }
     
-    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,21 +66,50 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCarreras = new javax.swing.JTable();
+        jButtonBajaCarreras = new javax.swing.JButton();
+        jButtonModificarCarreras = new javax.swing.JButton();
+        jButtonAltaCarreras = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCorredores = new javax.swing.JMenu();
         jMenuAltaCorredor = new javax.swing.JMenu();
         jMenuBajaCorredor = new javax.swing.JMenu();
         jMenuModificarCorredor = new javax.swing.JMenu();
         jMenuVerCorredores = new javax.swing.JMenu();
-        jMenuCarrerasNo = new javax.swing.JMenu();
-        jMenuAltaCarreras = new javax.swing.JMenu();
-        jMenuBajaCarreras = new javax.swing.JMenu();
-        jMenuModificarCarrera = new javax.swing.JMenu();
         jMenuCarreras = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de Carrera");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel1.setText("Carreras No Realizadas");
+
+        jTableCarreras.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Fecha de la carrera", "Lugar de la carrera", "Número máximo de participantes", "Corredores"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableCarreras);
+
+        jButtonBajaCarreras.setText("Baja");
+
+        jButtonModificarCarreras.setText("Modificar");
+
+        jButtonAltaCarreras.setText("Alta");
+        jButtonAltaCarreras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonAltaCarrerasMouseClicked(evt);
+            }
+        });
 
         jMenuCorredores.setText("Corredores");
         jMenuCorredores.addActionListener(new java.awt.event.ActionListener() {
@@ -95,19 +152,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCorredores);
 
-        jMenuCarrerasNo.setText("Carreras no realizadas");
-
-        jMenuAltaCarreras.setText("Alta");
-        jMenuCarrerasNo.add(jMenuAltaCarreras);
-
-        jMenuBajaCarreras.setText("Baja");
-        jMenuCarrerasNo.add(jMenuBajaCarreras);
-
-        jMenuModificarCarrera.setText("Modificar");
-        jMenuCarrerasNo.add(jMenuModificarCarrera);
-
-        jMenuBar1.add(jMenuCarrerasNo);
-
         jMenuCarreras.setText("Carreras realizadas");
         jMenuBar1.add(jMenuCarreras);
 
@@ -117,11 +161,35 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 704, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(247, 247, 247)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonAltaCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButtonBajaCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButtonModificarCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(69, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBajaCarreras)
+                    .addComponent(jButtonModificarCarreras)
+                    .addComponent(jButtonAltaCarreras))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,6 +220,37 @@ public class Principal extends javax.swing.JFrame {
        modificarCorredores.setVisible(true);
     }//GEN-LAST:event_jMenuModificarCorredorMouseClicked
 
+    private void jButtonAltaCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAltaCarrerasMouseClicked
+       altaCarreras = new AltaCarreras(this,true);
+       altaCarreras.setVisible(true);
+    }//GEN-LAST:event_jButtonAltaCarrerasMouseClicked
+
+    public ArrayList<Carrera> getLista() {
+        return lista;
+    }
+
+    public void setLista(ArrayList<Carrera> lista) {
+        this.lista = lista;
+    }
+
+    public DefaultTableModel getDtm() {
+        return dtm;
+    }
+
+    public void setDtm(DefaultTableModel dtm) {
+        this.dtm = dtm;
+    }
+
+    public JTable getjTableCarreras() {
+        return jTableCarreras;
+    }
+
+    public void setjTableCarreras(JTable jTableCarreras) {
+        this.jTableCarreras = jTableCarreras;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -188,16 +287,18 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenuAltaCarreras;
+    private javax.swing.JButton jButtonAltaCarreras;
+    private javax.swing.JButton jButtonBajaCarreras;
+    private javax.swing.JButton jButtonModificarCarreras;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenuAltaCorredor;
-    private javax.swing.JMenu jMenuBajaCarreras;
     private javax.swing.JMenu jMenuBajaCorredor;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCarreras;
-    private javax.swing.JMenu jMenuCarrerasNo;
     private javax.swing.JMenu jMenuCorredores;
-    private javax.swing.JMenu jMenuModificarCarrera;
     private javax.swing.JMenu jMenuModificarCorredor;
     private javax.swing.JMenu jMenuVerCorredores;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableCarreras;
     // End of variables declaration//GEN-END:variables
 }

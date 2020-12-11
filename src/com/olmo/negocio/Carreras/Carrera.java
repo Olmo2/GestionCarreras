@@ -8,78 +8,91 @@ import com.olmo.negocio.Corredores.Corredor;
 import com.olmo.negocio.Corredores.Dorsal;
 
 public class Carrera {
-	
-	private String Nombre;
-	private Date fecha;
-	private String lugar;
-	private int maxPart;
-	private List<Corredor> participantes;
-	private Map<Corredor, Dorsal> corredores;
-	
-	
-	public Carrera() {
-		super();
-	}
 
-	public Carrera(String nombre, Date fecha, String lugar, int maxPart,List<Corredor>participantes, Map<Corredor, Dorsal> corredores) {
-		super();
-		Nombre = nombre;
-		this.fecha = fecha;
-		this.lugar = lugar;
-		this.maxPart = maxPart;
-		this.participantes=participantes;
-		this.corredores = corredores;
-	}
-	
-	public String getNombre() {
-		return Nombre;
-	}
-	public void setNombre(String nombre) {
-		Nombre = nombre;
-	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-	public String getLugar() {
-		return lugar;
-	}
-	public void setLugar(String lugar) {
-		this.lugar = lugar;
-	}
-	public int getMaxPart() {
-		return maxPart;
-	}
-	public void setMaxPart(int maxPart) {
-		this.maxPart = maxPart;
-	}
-	
-	
-	public List<Corredor> getParticipantes() {
-		return participantes;
-	}
+    private String nombre;
+    private Date fecha;
+    private String lugar;
+    private Integer maxPart;
+    private Map<Corredor, Dorsal> corredoresLlegada;
+    private Map<Corredor, Dorsal> corredores;
 
-	public void setParticipantes(List<Corredor> participantes) {
-		this.participantes = participantes;
-	}
+    public Carrera() {
+        super();
+    }
 
-	public Map<Corredor, Dorsal> getCorredores() {
-		return corredores;
-	}
-	public void setCorredores(Map<Corredor, Dorsal> corredores) {
-		this.corredores = corredores;
-	}
+    public Carrera(String Nombre, Date fecha, String lugar, Integer maxPart, Map<Corredor, Dorsal> corredoresLlegada, Map<Corredor, Dorsal> corredores) {
+        this.nombre = Nombre;
+        this.fecha = fecha;
+        this.lugar = lugar;
+        this.maxPart = maxPart;
+        this.corredoresLlegada = corredoresLlegada;
+        this.corredores = corredores;
+    }
 
-	@Override
-	public String toString() {
-		return "Carrera [Nombre=" + Nombre + ", fecha=" + fecha + ", lugar=" + lugar + ", maxPart=" + maxPart
-				+ ", participantes=" + participantes + ", corredores=" + corredores + "]";
-	}
-	
-	
-	
-	
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public Integer getMaxPart() {
+        return maxPart;
+    }
+
+    public void setMaxPart(Integer maxPart) {
+        this.maxPart = maxPart;
+    }
+
+    public Map<Corredor, Dorsal> getCorredoresLlegada() {
+        return corredoresLlegada;
+    }
+
+    public void setCorredoresLlegada(Map<Corredor, Dorsal> corredoresLlegada) {
+        this.corredoresLlegada = corredoresLlegada;
+    }
+
+    public Map<Corredor, Dorsal> getCorredores() {
+        return corredores;
+    }
+
+    public void setCorredores(Map<Corredor, Dorsal> corredores) {
+        this.corredores = corredores;
+    }
+
+    
+    public String[] toArrayString(){
+         String[] values = new String[6];
+         values[0]=nombre;
+         values[1]=fecha.toString();
+         values[2]=lugar;
+         values[3]=maxPart.toString();
+         values[4]=corredoresLlegada.toString();
+         values[5]=corredores.toString();
+         
+        return values;
+    }
+    @Override
+    public String toString() {
+        return "Carrera [Nombre=" + nombre + ", fecha=" + fecha + ", lugar=" + lugar + ", maxPart=" + maxPart
+                + ", corredoresLlegada=" + corredoresLlegada + ", corredores=" + corredores + "]";
+    }
 
 }

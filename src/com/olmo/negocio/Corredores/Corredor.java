@@ -75,8 +75,7 @@ public class Corredor {
     }
 	@Override
 	public String toString() {
-		return "Corredor [nombre=" + nombre + ", DNI=" + DNI + ", fecha=" + fecha + ", dir=" + dir + ", tlf=" + tlf
-				+ "]";
+		return nombre;
 	}
 	
 	
