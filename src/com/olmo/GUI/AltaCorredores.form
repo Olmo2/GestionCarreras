@@ -23,33 +23,52 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jButtonAlta" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
-                          <Component id="jLabelTitulo" min="-2" pref="301" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelDni" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelFecha" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelDir" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelTlf" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelFecha" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextFieldNombre" max="32767" attributes="0"/>
-                              <Component id="jTextFieldDni" max="32767" attributes="0"/>
-                              <Component id="jTextFieldFecha" max="32767" attributes="0"/>
-                              <Component id="jTextFieldDir" max="32767" attributes="0"/>
-                              <Component id="jTextFieldTlf" pref="147" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabelErrorDni" min="-2" pref="141" max="-2" attributes="0"/>
+                                      <Component id="jLabelErrorNombre" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldNombre" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldDni" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldFecha" min="-2" pref="147" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabelErrorTlf" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                          <Component id="jTextFieldDir" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                                          <Component id="jLabelErrorFecha" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                                          <Component id="jLabelErrorDir" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldTlf" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabelErrores" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonAlta" min="-2" pref="295" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
+                  <Component id="jLabelTitulo" min="-2" pref="301" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="168" max="32767" attributes="0"/>
           </Group>
@@ -60,34 +79,48 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="jLabelTitulo" min="-2" pref="71" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabelNombre" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldNombre" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="jLabelErrorNombre" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelDni" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldDni" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelDni" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabelErrorDni" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelDir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldDir" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Component id="jLabelErrorFecha" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jTextFieldDir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jLabelErrorDir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTextFieldTlf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelTlf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jLabelDir" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelTlf" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTlf" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabelErrorTlf" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonAlta" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLabelErrores" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="126" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -128,17 +161,30 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNombre">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldNombreFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldDni">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDniFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldDniActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldFecha">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldFechaFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldDir">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDirFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldTlf">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldTlfFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonAlta">
       <Properties>
@@ -150,6 +196,69 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonAltaMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelErrorNombre">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="8" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Rellena el nombre"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelErrorDni">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="8" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Comprueba el formato &apos;00000000A&apos;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelErrorFecha">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="8" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Comprueba el formato &apos;YYYY/MM/DD&apos;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelErrorDir">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="8" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Rellena la direcci&#xf3;n "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelErrorTlf">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="8" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Comprueba el formato &apos;000000000&apos;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelErrores">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Revisa tus datos, hay errores"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package com.olmo.GUI;
+
 import com.olmo.negocio.Corredores.Corredor;
 import java.sql.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JDialog;
+
 /**
  *
  * @author OLMO
@@ -17,11 +21,21 @@ public class AltaCorredores extends javax.swing.JDialog {
      * Creates new form AltaCorredores
      */
     Corredores corredores;
-    public AltaCorredores(java.awt.Frame parent,JDialog dialog, boolean modal) {
+    Pattern pattern;
+    Matcher m;
+    Boolean validNombre, validDni, validFecha, validDir, validTlf;
+
+    public AltaCorredores(java.awt.Frame parent, JDialog dialog, boolean modal) {
         super(parent, modal);
-       corredores  = (Corredores) dialog;
-       
+        corredores = (Corredores) dialog;
         initComponents();
+        jLabelErrorNombre.setVisible(false);
+        jLabelErrorDni.setVisible(false);
+        jLabelErrorFecha.setVisible(false);
+        jLabelErrorDir.setVisible(false);
+        jLabelErrorTlf.setVisible(false);
+         jLabelErrores.setVisible(false);
+
     }
 
     /**
@@ -45,6 +59,12 @@ public class AltaCorredores extends javax.swing.JDialog {
         jTextFieldDir = new javax.swing.JTextField();
         jTextFieldTlf = new javax.swing.JTextField();
         jButtonAlta = new javax.swing.JButton();
+        jLabelErrorNombre = new javax.swing.JLabel();
+        jLabelErrorDni = new javax.swing.JLabel();
+        jLabelErrorFecha = new javax.swing.JLabel();
+        jLabelErrorDir = new javax.swing.JLabel();
+        jLabelErrorTlf = new javax.swing.JLabel();
+        jLabelErrores = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,9 +82,38 @@ public class AltaCorredores extends javax.swing.JDialog {
 
         jLabelTlf.setText("Teléfono de contacto: ");
 
+        jTextFieldNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldNombreFocusLost(evt);
+            }
+        });
+
+        jTextFieldDni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldDniFocusLost(evt);
+            }
+        });
         jTextFieldDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDniActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFecha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldFechaFocusLost(evt);
+            }
+        });
+
+        jTextFieldDir.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldDirFocusLost(evt);
+            }
+        });
+
+        jTextFieldTlf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldTlfFocusLost(evt);
             }
         });
 
@@ -76,32 +125,68 @@ public class AltaCorredores extends javax.swing.JDialog {
             }
         });
 
+        jLabelErrorNombre.setFont(new java.awt.Font("Dialog", 1, 8)); // NOI18N
+        jLabelErrorNombre.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErrorNombre.setText("Rellena el nombre");
+
+        jLabelErrorDni.setFont(new java.awt.Font("Dialog", 1, 8)); // NOI18N
+        jLabelErrorDni.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErrorDni.setText("Comprueba el formato '00000000A'");
+
+        jLabelErrorFecha.setFont(new java.awt.Font("Dialog", 1, 8)); // NOI18N
+        jLabelErrorFecha.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErrorFecha.setText("Comprueba el formato 'YYYY/MM/DD'");
+
+        jLabelErrorDir.setFont(new java.awt.Font("Dialog", 1, 8)); // NOI18N
+        jLabelErrorDir.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErrorDir.setText("Rellena la dirección ");
+
+        jLabelErrorTlf.setFont(new java.awt.Font("Dialog", 1, 8)); // NOI18N
+        jLabelErrorTlf.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErrorTlf.setText("Comprueba el formato '000000000'");
+
+        jLabelErrores.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErrores.setText("Revisa tus datos, hay errores");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(186, 186, 186)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(206, 206, 206)
-                            .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(141, 141, 141)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabelNombre)
                                 .addComponent(jLabelDni)
-                                .addComponent(jLabelFecha)
                                 .addComponent(jLabelDir)
-                                .addComponent(jLabelTlf))
-                            .addGap(47, 47, 47)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldNombre)
-                                .addComponent(jTextFieldDni)
-                                .addComponent(jTextFieldFecha)
-                                .addComponent(jTextFieldDir)
-                                .addComponent(jTextFieldTlf, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))))
+                                .addComponent(jLabelTlf)
+                                .addComponent(jLabelFecha))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(47, 47, 47)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabelErrorDni, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelErrorNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextFieldNombre)
+                                        .addComponent(jTextFieldDni)
+                                        .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabelErrorTlf)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelErrorFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelErrorDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldTlf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(17, 17, 17)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabelErrores)
+                                .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(168, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,29 +194,42 @@ public class AltaCorredores extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelNombre)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
+                .addComponent(jLabelErrorNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDni)
-                    .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDni))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelErrorDni)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFecha)
-                    .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDir)
-                    .addComponent(jTextFieldDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelTlf)
-                    .addComponent(jTextFieldTlf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelFecha))
+                .addGap(8, 8, 8)
+                .addComponent(jLabelErrorFecha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextFieldDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelErrorDir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldTlf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTlf)))
+                    .addComponent(jLabelDir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelErrorTlf)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonAlta)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelErrores)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,20 +240,86 @@ public class AltaCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldDniActionPerformed
 
     private void jButtonAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAltaMouseClicked
+        if (validNombre && validDni && validFecha && validDir && validTlf) {
+
+        
         String raw = jTextFieldFecha.getText();
-        String[] arr = raw.split("-");
-        for(int i=0;i<arr.length;i++){
+        String[] arr = raw.split("/");
+        for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
         /*                          Año                  mes                         dia        */
-        Date date = new Date(Integer.parseInt(arr[0])-1900,Integer.parseInt(arr[1])-1,Integer.parseInt(arr[2]));
-          Corredor corredor = new Corredor(jTextFieldNombre.getText(),jTextFieldDni.getText(),date,
-                  jTextFieldDir.getText(),Integer.parseInt(jTextFieldTlf.getText()));
-          System.out.println(corredor);
-          corredores.anadirCorredor(corredor);
-          this.dispose();
-      
+        Date date = new Date(Integer.parseInt(arr[0]) - 1900, Integer.parseInt(arr[1]) - 1, Integer.parseInt(arr[2]));
+        Corredor corredor = new Corredor(jTextFieldNombre.getText(), jTextFieldDni.getText(), date,
+                jTextFieldDir.getText(), Integer.parseInt(jTextFieldTlf.getText()));
+        System.out.println(corredor);
+        corredores.anadirCorredor(corredor);
+        this.dispose();
+        }else{
+            jLabelErrores.setVisible(true);
+        }
+
     }//GEN-LAST:event_jButtonAltaMouseClicked
+
+    private void jTextFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNombreFocusLost
+        if (jTextFieldNombre.getText().isEmpty()) {
+            validNombre = false;
+            jLabelErrorNombre.setVisible(true);
+        } else {
+            validNombre = true;
+            jLabelErrorNombre.setVisible(false);
+        }
+    }//GEN-LAST:event_jTextFieldNombreFocusLost
+
+    private void jTextFieldDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDniFocusLost
+        pattern = Pattern.compile("([0-9]{8}[A-Z]{1})");
+        m = pattern.matcher(jTextFieldDni.getText());
+        if (!m.matches()) {
+            validDni = false;
+            jLabelErrorDni.setVisible(true);
+        } else {
+            validDni = true;
+            jLabelErrorDni.setVisible(false);
+        }
+    }//GEN-LAST:event_jTextFieldDniFocusLost
+
+    private void jTextFieldFechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaFocusLost
+        pattern = Pattern.compile("([0-9]{4}\\/[0-9]{2}\\/[0-9]{2})");
+        m = pattern.matcher(jTextFieldFecha.getText());
+        String[] attr = jTextFieldFecha.getText().split("/");
+
+        if (!m.matches() || ((Integer.parseInt(attr[0]) < 0 || Integer.parseInt(attr[0]) > 2020)
+                || (Integer.parseInt(attr[1]) < 1 || Integer.parseInt(attr[1]) > 12)
+                || (Integer.parseInt(attr[2]) < 1 || Integer.parseInt(attr[2]) > 31))) {
+            validFecha = false;
+            jLabelErrorFecha.setVisible(true);
+        } else {
+            validFecha = true;
+            jLabelErrorFecha.setVisible(false);
+        }
+    }//GEN-LAST:event_jTextFieldFechaFocusLost
+
+    private void jTextFieldDirFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDirFocusLost
+        if (jTextFieldDir.getText().isEmpty()) {
+            validDir = false;
+            jLabelErrorDir.setVisible(true);
+        } else {
+            validDir = true;
+            jLabelErrorDir.setVisible(false);
+        }
+    }//GEN-LAST:event_jTextFieldDirFocusLost
+
+    private void jTextFieldTlfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTlfFocusLost
+        pattern = Pattern.compile("([0-9]{9})");
+        m = pattern.matcher(jTextFieldTlf.getText());
+        if (!m.matches()) {
+            validDni = false;
+            jLabelErrorTlf.setVisible(true);
+        } else {
+            validDni = true;
+            jLabelErrorTlf.setVisible(false);
+        }
+    }//GEN-LAST:event_jTextFieldTlfFocusLost
 
     /**
      * @param args the command line arguments
@@ -187,7 +351,7 @@ public class AltaCorredores extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AltaCorredores dialog = new AltaCorredores(new javax.swing.JFrame(),new javax.swing.JDialog(), true);
+                AltaCorredores dialog = new AltaCorredores(new javax.swing.JFrame(), new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -203,6 +367,12 @@ public class AltaCorredores extends javax.swing.JDialog {
     private javax.swing.JButton jButtonAlta;
     private javax.swing.JLabel jLabelDir;
     private javax.swing.JLabel jLabelDni;
+    private javax.swing.JLabel jLabelErrorDir;
+    private javax.swing.JLabel jLabelErrorDni;
+    private javax.swing.JLabel jLabelErrorFecha;
+    private javax.swing.JLabel jLabelErrorNombre;
+    private javax.swing.JLabel jLabelErrorTlf;
+    private javax.swing.JLabel jLabelErrores;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelTitulo;
