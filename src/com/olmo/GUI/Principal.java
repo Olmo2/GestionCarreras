@@ -12,6 +12,7 @@ package com.olmo.GUI;
 public class Principal extends javax.swing.JFrame {
  Corredores corredores;
  AltaCorredores altaCorredores;
+ BajaCorredores bajaCorredores;
     /**
      * Creates new form Principal
      */
@@ -61,6 +62,11 @@ public class Principal extends javax.swing.JFrame {
         jMenuCorredores.add(jMenuAltaCorredor);
 
         jMenuBajaCorredor.setText("Baja");
+        jMenuBajaCorredor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuBajaCorredorMouseClicked(evt);
+            }
+        });
         jMenuCorredores.add(jMenuBajaCorredor);
 
         jMenuModificarCorredor.setText("Modificar");
@@ -122,6 +128,10 @@ public class Principal extends javax.swing.JFrame {
         altaCorredores = new AltaCorredores(this,corredores,true);
        altaCorredores.setVisible(true);
     }//GEN-LAST:event_jMenuAltaCorredorMouseClicked
+
+    private void jMenuBajaCorredorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBajaCorredorMouseClicked
+ bajaCorredores = new BajaCorredores(this,corredores,true);
+       bajaCorredores.setVisible(true);    }//GEN-LAST:event_jMenuBajaCorredorMouseClicked
 
     /**
      * @param args the command line arguments

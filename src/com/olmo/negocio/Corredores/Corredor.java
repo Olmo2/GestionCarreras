@@ -62,6 +62,17 @@ public class Corredor {
         
         return values;
     }
+           public String[] toArrayString(Integer id){
+         String[] values = new String[6];
+         values[0]=id.toString();
+         values[1]=nombre;
+         values[2]=DNI;
+         values[3]=fecha.toString();
+         values[4]=dir;
+         values[5]=tlf.toString();
+        
+        return values;
+    }
 	@Override
 	public String toString() {
 		return "Corredor [nombre=" + nombre + ", DNI=" + DNI + ", fecha=" + fecha + ", dir=" + dir + ", tlf=" + tlf

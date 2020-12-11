@@ -5,6 +5,7 @@
  */
 package com.olmo.GUI;
 
+import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Corredores.Corredor;
 import java.sql.Date;
 import java.util.regex.Matcher;
@@ -25,22 +26,23 @@ public class AltaCorredores extends javax.swing.JDialog {
     Pattern pattern;
     Matcher m;
     Boolean validNombre, validDni, validFecha, validDir, validTlf;
+    Operaciones op;
 
     public AltaCorredores(java.awt.Frame parent, JDialog dialog, boolean modal) {
         super(parent, modal);
         corredores = (Corredores) dialog;
         principal = (Principal) parent;
         initComponents();
+        op = new Operaciones();
         jLabelErrorNombre.setVisible(false);
         jLabelErrorDni.setVisible(false);
         jLabelErrorFecha.setVisible(false);
         jLabelErrorDir.setVisible(false);
         jLabelErrorTlf.setVisible(false);
-         jLabelErrores.setVisible(false);
-         validNombre= validDni= validFecha= validDir= validTlf=false;
+        jLabelErrores.setVisible(false);
+        validNombre = validDni = validFecha = validDir = validTlf = false;
 
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -246,21 +248,20 @@ public class AltaCorredores extends javax.swing.JDialog {
     private void jButtonAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAltaMouseClicked
         if (validNombre && validDni && validFecha && validDir && validTlf) {
 
-        
-        String raw = jTextFieldFecha.getText();
-        String[] arr = raw.split("/");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
-        }
-        /*                          Año                  mes                         dia        */
-        Date date = new Date(Integer.parseInt(arr[0]) - 1900, Integer.parseInt(arr[1]) - 1, Integer.parseInt(arr[2]));
-        Corredor corredor = new Corredor(jTextFieldNombre.getText(), jTextFieldDni.getText(), date,
-                jTextFieldDir.getText(), Integer.parseInt(jTextFieldTlf.getText()));
-        System.out.println(corredor);
-        corredores.anadirCorredor(corredor);
-       
-        this.dispose();
-        }else{
+            String raw = jTextFieldFecha.getText();
+            String[] arr = raw.split("/");
+            for (int i = 0; i < arr.length; i++) {
+                System.out.println(arr[i]);
+            }
+            /*                          Año                  mes                         dia        */
+            Date date = new Date(Integer.parseInt(arr[0]) - 1900, Integer.parseInt(arr[1]) - 1, Integer.parseInt(arr[2]));
+            Corredor corredor = new Corredor(jTextFieldNombre.getText(), jTextFieldDni.getText(), date,
+                    jTextFieldDir.getText(), Integer.parseInt(jTextFieldTlf.getText()));
+            System.out.println(corredor);
+            op.anadirCorredor(corredor, corredores.getLista());
+            op.anadirCorredores(corredores.getDtm(), corredores.getLista(), corredores.getjTableCorredores());
+            this.dispose();
+        } else {
             jLabelErrores.setVisible(true);
         }
 

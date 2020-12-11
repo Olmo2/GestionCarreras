@@ -6,9 +6,12 @@
 package com.olmo.GUI;
 
 
+import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Corredores.Corredor;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,54 +19,57 @@ import javax.swing.table.DefaultTableModel;
  * @author OLMO
  */
 public class Corredores extends javax.swing.JDialog {
-        DefaultTableModel dtm;
+        private DefaultTableModel dtm;
         /*
         year - the year minus 1900.
         month - the month between 0-11.
         date - the day of the month between 1-31*/
-        ArrayList<Corredor> lista = new ArrayList<Corredor>();
+        private ArrayList<Corredor> lista = new ArrayList<Corredor>();
         Corredor corredor;
-         Date date;
+        Date date;
         
     /**
      * Creates new form Corredores
      */
         Principal principal;
-        
+        BajaCorredores bajaCorredores;
+        AltaCorredores altaCorredores;
+        Operaciones op;
     public Corredores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
          principal=(Principal)parent;
-        initComponents();
+         initComponents();
+          op =new Operaciones();
          date= new Date(99,8,23);
-       corredor =new Corredor("Olmo","71729223C",date,"C/Falsa 123",608013779);
+        corredor =new Corredor("Olmo","71729223C",date,"C/Falsa 123",608013779);
         
         lista.add(corredor);
-        inicializarTabla();
+        op.inicializarTabla(dtm,jTableCorredores);
+        //inicializarTabla(dtm,jTableCorredores);
+        op.anadirCorredores(dtm, lista, jTableCorredores);
         
     }
 
-    /*inicializar el modelo de la tabla*/
-    public void inicializarTabla(){
-        dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(new String[]{"Nombre","DNI","Fecha de Nacimiento","Direccion","Teléfono de contacto"});
-        jTableCorredores.setModel(dtm); 
-        anadirCorredor(lista);
+  
+    public JTable getjTableCorredores() {
+        return jTableCorredores;
+    }
+
+    public DefaultTableModel getDtm() {
+        return dtm;
+    }
+
+    public ArrayList<Corredor> getLista() {
+        return lista;
+    }
+
+    public void setLista(ArrayList<Corredor> lista) {
+        this.lista = lista;
     }
     
-    /*Método de añadir corredor*/
-     public void anadirCorredor(Corredor corredor){
-        dtm = (DefaultTableModel)jTableCorredores.getModel();
-        dtm.addRow(corredor.toArrayString());
-        lista.add(corredor);
-    }
-     public void anadirCorredor( ArrayList<Corredor> lista){
-        for(int i = 0;i<lista.size();i++){
-        dtm = (DefaultTableModel)jTableCorredores.getModel();
-        dtm.addRow(lista.get(i).toArrayString());
-        }
-        
-        
-    }
+    
+    
+  
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,6 +130,11 @@ public class Corredores extends javax.swing.JDialog {
         });
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonModificarMouseClicked(evt);
+            }
+        });
         jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificarActionPerformed(evt);
@@ -189,13 +200,21 @@ public class Corredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVolverMouseClicked
 
     private void jButtonAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAltaMouseClicked
-        AltaCorredores altaCorredores = new AltaCorredores(principal,this,true);
+      altaCorredores = new AltaCorredores(principal,this,true);
         altaCorredores.setVisible(true);
     }//GEN-LAST:event_jButtonAltaMouseClicked
 
     private void jButtonBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBajaMouseClicked
-        anadirCorredor(corredor);
+    bajaCorredores = new BajaCorredores(principal,this,true);
+        bajaCorredores.setVisible(true);
+
+//anadirCorredor(dtm,corredor,lista,jTableCorredores);
     }//GEN-LAST:event_jButtonBajaMouseClicked
+
+    private void jButtonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarMouseClicked
+     op.anadirCorredor(corredor,lista);
+     op.anadirCorredores(dtm, lista, jTableCorredores);
+    }//GEN-LAST:event_jButtonModificarMouseClicked
 
     /**
      * @param args the command line arguments
