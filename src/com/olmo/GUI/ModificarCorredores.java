@@ -9,31 +9,32 @@ import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Corredores.Corredor;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author OLMO
  */
-public class BajaCorredores extends javax.swing.JDialog {
-    
-    DefaultTableModel dtm;
+public class ModificarCorredores extends javax.swing.JDialog {
+
     /**
-     * Creates new form BajaCorredores
+     * Creates new form ModificarCorredores
      */
+    DefaultTableModel dtm;
+    Principal principal;
     Corredores corredores;
+    ModificarCorredor modificarCorredor;
     Operaciones op;
-    public BajaCorredores(java.awt.Frame parent,JDialog dialog, boolean modal) {
+    public ModificarCorredores(java.awt.Frame parent,JDialog dialog, boolean modal) {
         super(parent, modal);
-        corredores=(Corredores) dialog;
+        principal = (Principal)parent;
+         corredores=(Corredores) dialog;
         initComponents();
         op = new Operaciones();
         op.inicializarTablaBaja(dtm,jTableCorredores);
         op.anadirCorredoresId(dtm, corredores.getLista(), jTableCorredores);
-        
     }
-    
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,19 +45,24 @@ public class BajaCorredores extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredores = new javax.swing.JTable();
-        jButtonDarBaja = new javax.swing.JButton();
-        jTextFieldIDBorrar = new javax.swing.JTextField();
+        jButtonModificar = new javax.swing.JButton();
+        jTextFieldIDModificar = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jButtonVolver = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Baja Corredores");
+        jLabelTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitulo.setText("Modificar Corredores");
 
         jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,18 +92,20 @@ public class BajaCorredores extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTableCorredores);
 
-        jButtonDarBaja.setText("Dar de Baja");
-        jButtonDarBaja.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonDarBajaMouseClicked(evt);
+                jButtonModificarMouseClicked(evt);
             }
         });
 
-        jTextFieldIDBorrar.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldIDModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldIDBorrarActionPerformed(evt);
+                jTextFieldIDModificarActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Introduce el id del corredor que quieres modificar");
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,72 +114,83 @@ public class BajaCorredores extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Intrroduce el id del corredor que quieres borrar");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(122, 122, 122))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldIDBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldIDModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDarBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(253, 253, 253)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jButtonVolver)))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonDarBaja)
-                    .addComponent(jTextFieldIDBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(98, Short.MAX_VALUE))
+                    .addComponent(jButtonModificar)
+                    .addComponent(jTextFieldIDModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldIDBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDBorrarActionPerformed
+    private void jButtonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarMouseClicked
+        ArrayList<Corredor>lista = corredores.getLista();
+        int i=Integer.parseInt(jTextFieldIDModificar.getText())-1;
+        lista.get(i);
+        modificarCorredor = new ModificarCorredor(principal,corredores,this,i,true);
+        modificarCorredor.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jButtonModificarMouseClicked
+
+    private void jTextFieldIDModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDModificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIDBorrarActionPerformed
+    }//GEN-LAST:event_jTextFieldIDModificarActionPerformed
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
-    
-       op.anadirCorredores(dtm, corredores.getLista(), corredores.getjTableCorredores());
+        op.anadirCorredores(corredores.getDtm(), corredores.getLista(), corredores.getjTableCorredores());
         this.dispose();
-       
     }//GEN-LAST:event_jButtonVolverMouseClicked
 
-    private void jButtonDarBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDarBajaMouseClicked
-        ArrayList<Corredor>lista = corredores.getLista();
-        lista.remove(Integer.parseInt(jTextFieldIDBorrar.getText())-1);
-        corredores.setLista(lista);
-        op.anadirCorredoresId(dtm, lista, jTableCorredores);
-    }//GEN-LAST:event_jButtonDarBajaMouseClicked
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+         op.anadirCorredores(corredores.getDtm(), corredores.getLista(), corredores.getjTableCorredores());
+    }//GEN-LAST:event_formWindowClosed
 
+    public JTable getjTableCorredores() {
+        return jTableCorredores;
+    }
+
+    public void setjTableCorredores(JTable jTableCorredores) {
+        this.jTableCorredores = jTableCorredores;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -189,20 +208,20 @@ public class BajaCorredores extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BajaCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BajaCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BajaCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BajaCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BajaCorredores dialog = new BajaCorredores(new javax.swing.JFrame(),new JDialog(), true);
+                ModificarCorredores dialog = new ModificarCorredores(new javax.swing.JFrame(), new JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -213,14 +232,16 @@ public class BajaCorredores extends javax.swing.JDialog {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonDarBaja;
+    private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCorredores;
-    private javax.swing.JTextField jTextFieldIDBorrar;
+    private javax.swing.JTextField jTextFieldIDModificar;
     // End of variables declaration//GEN-END:variables
 }

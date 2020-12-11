@@ -13,6 +13,7 @@ public class Principal extends javax.swing.JFrame {
  Corredores corredores;
  AltaCorredores altaCorredores;
  BajaCorredores bajaCorredores;
+  ModificarCorredores  modificarCorredores;
     /**
      * Creates new form Principal
      */
@@ -70,6 +71,11 @@ public class Principal extends javax.swing.JFrame {
         jMenuCorredores.add(jMenuBajaCorredor);
 
         jMenuModificarCorredor.setText("Modificar");
+        jMenuModificarCorredor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuModificarCorredorMouseClicked(evt);
+            }
+        });
         jMenuCorredores.add(jMenuModificarCorredor);
 
         jMenuVerCorredores.setText("Ver Corredores");
@@ -130,8 +136,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuAltaCorredorMouseClicked
 
     private void jMenuBajaCorredorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBajaCorredorMouseClicked
- bajaCorredores = new BajaCorredores(this,corredores,true);
-       bajaCorredores.setVisible(true);    }//GEN-LAST:event_jMenuBajaCorredorMouseClicked
+        bajaCorredores = new BajaCorredores(this,corredores,true);
+       bajaCorredores.setVisible(true);
+    }//GEN-LAST:event_jMenuBajaCorredorMouseClicked
+
+    private void jMenuModificarCorredorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuModificarCorredorMouseClicked
+         modificarCorredores = new ModificarCorredores(this,corredores,true);
+       modificarCorredores.setVisible(true);
+    }//GEN-LAST:event_jMenuModificarCorredorMouseClicked
 
     /**
      * @param args the command line arguments

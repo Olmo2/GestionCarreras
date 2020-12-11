@@ -34,6 +34,7 @@ public class Corredores extends javax.swing.JDialog {
         Principal principal;
         BajaCorredores bajaCorredores;
         AltaCorredores altaCorredores;
+        ModificarCorredores modificarCorredores;
         Operaciones op;
     public Corredores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -87,6 +88,7 @@ public class Corredores extends javax.swing.JDialog {
         jButtonBaja = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -148,6 +150,13 @@ public class Corredores extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Corredor +");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,9 +166,14 @@ public class Corredores extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabelCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))
@@ -177,7 +191,10 @@ public class Corredores extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonVolver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonVolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAlta)
@@ -212,9 +229,16 @@ public class Corredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBajaMouseClicked
 
     private void jButtonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarMouseClicked
-     op.anadirCorredor(corredor,lista);
-     op.anadirCorredores(dtm, lista, jTableCorredores);
+         modificarCorredores = new ModificarCorredores(principal,this,true);
+        modificarCorredores.setVisible(true);
+        
+
     }//GEN-LAST:event_jButtonModificarMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+       op.anadirCorredor(corredor,lista);
+     op.anadirCorredores(dtm, lista, jTableCorredores);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -259,6 +283,7 @@ public class Corredores extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlta;
     private javax.swing.JButton jButtonBaja;
     private javax.swing.JButton jButtonModificar;

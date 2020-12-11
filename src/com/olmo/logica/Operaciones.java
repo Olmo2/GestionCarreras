@@ -34,23 +34,16 @@ public class Operaciones {
 
         lista.add(corredor);
     }
-
+    
     public void anadirCorredores(DefaultTableModel dtm, ArrayList<Corredor> lista, JTable table) {
         dtm = (DefaultTableModel) table.getModel();
-        /*for (int i = 0; i < dtm.getRowCount(); i++) {
-            dtm.removeRow(i);
-        }
-        
 
-        for (int i = 0; i < lista.size(); i++) {
-            dtm.addRow(lista.get(i).toArrayString());
-        }*/
         if (dtm.getRowCount() > 0) {
             for (int i = dtm.getRowCount() - 1; i > -1; i--) {
                 dtm.removeRow(i);
             }
         }
-        
+
         for (int i = 0; i < lista.size(); i++) {
             dtm.addRow(lista.get(i).toArrayString());
         }
@@ -59,26 +52,22 @@ public class Operaciones {
     public void anadirCorredoresId(DefaultTableModel dtm, ArrayList<Corredor> lista, JTable table) {
 
         dtm = (DefaultTableModel) table.getModel();
-       /* for (int i = 0; i < dtm.getRowCount(); i++) {
-            dtm.removeRow(i);
-        }
 
-        for (int i = 0; i < lista.size(); i++) {
-            System.out.println(lista.get(i) + "" + i);
-
-            dtm.addRow(lista.get(i).toArrayString(i + 1));
-        }*/
-       
-       if (dtm.getRowCount() > 0) {
+        if (dtm.getRowCount() > 0) {
             for (int i = dtm.getRowCount() - 1; i > -1; i--) {
                 dtm.removeRow(i);
             }
         }
-        
+
         for (int i = 0; i < lista.size(); i++) {
-            dtm.addRow(lista.get(i).toArrayString(i+1));
+            dtm.addRow(lista.get(i).toArrayString(i + 1));
         }
         System.out.println(dtm.getRowCount());
     }
 
+    
+     public void modificarCorredor(Corredor corredor, ArrayList<Corredor> lista, Integer index) {
+         System.out.println("Hoal");
+        lista.set(index, corredor);
+    }
 }
