@@ -21,6 +21,7 @@ public class AltaCorredores extends javax.swing.JDialog {
      * Creates new form AltaCorredores
      */
     Corredores corredores;
+    Principal principal;
     Pattern pattern;
     Matcher m;
     Boolean validNombre, validDni, validFecha, validDir, validTlf;
@@ -28,6 +29,7 @@ public class AltaCorredores extends javax.swing.JDialog {
     public AltaCorredores(java.awt.Frame parent, JDialog dialog, boolean modal) {
         super(parent, modal);
         corredores = (Corredores) dialog;
+        principal = (Principal) parent;
         initComponents();
         jLabelErrorNombre.setVisible(false);
         jLabelErrorDni.setVisible(false);
@@ -35,8 +37,10 @@ public class AltaCorredores extends javax.swing.JDialog {
         jLabelErrorDir.setVisible(false);
         jLabelErrorTlf.setVisible(false);
          jLabelErrores.setVisible(false);
+         validNombre= validDni= validFecha= validDir= validTlf=false;
 
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -254,6 +258,7 @@ public class AltaCorredores extends javax.swing.JDialog {
                 jTextFieldDir.getText(), Integer.parseInt(jTextFieldTlf.getText()));
         System.out.println(corredor);
         corredores.anadirCorredor(corredor);
+       
         this.dispose();
         }else{
             jLabelErrores.setVisible(true);
@@ -313,10 +318,10 @@ public class AltaCorredores extends javax.swing.JDialog {
         pattern = Pattern.compile("([0-9]{9})");
         m = pattern.matcher(jTextFieldTlf.getText());
         if (!m.matches()) {
-            validDni = false;
+            validTlf = false;
             jLabelErrorTlf.setVisible(true);
         } else {
-            validDni = true;
+            validTlf = true;
             jLabelErrorTlf.setVisible(false);
         }
     }//GEN-LAST:event_jTextFieldTlfFocusLost

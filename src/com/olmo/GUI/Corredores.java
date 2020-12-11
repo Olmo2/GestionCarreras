@@ -8,6 +8,7 @@ package com.olmo.GUI;
 
 import com.olmo.negocio.Corredores.Corredor;
 import java.sql.Date;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,9 +21,10 @@ public class Corredores extends javax.swing.JDialog {
         year - the year minus 1900.
         month - the month between 0-11.
         date - the day of the month between 1-31*/
-        Date date= new Date(99,8,23);
-    
-        Corredor corredor=new Corredor("Olmo","71729223C",date,"C/Falsa 123",608013779);
+        ArrayList<Corredor> lista = new ArrayList<Corredor>();
+        Corredor corredor;
+         Date date;
+        
     /**
      * Creates new form Corredores
      */
@@ -32,7 +34,12 @@ public class Corredores extends javax.swing.JDialog {
         super(parent, modal);
          principal=(Principal)parent;
         initComponents();
+         date= new Date(99,8,23);
+       corredor =new Corredor("Olmo","71729223C",date,"C/Falsa 123",608013779);
+        
+        lista.add(corredor);
         inicializarTabla();
+        
     }
 
     /*inicializar el modelo de la tabla*/
@@ -40,13 +47,22 @@ public class Corredores extends javax.swing.JDialog {
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String[]{"Nombre","DNI","Fecha de Nacimiento","Direccion","Teléfono de contacto"});
         jTableCorredores.setModel(dtm); 
-        anadirCorredor(corredor);
+        anadirCorredor(lista);
     }
     
     /*Método de añadir corredor*/
      public void anadirCorredor(Corredor corredor){
         dtm = (DefaultTableModel)jTableCorredores.getModel();
         dtm.addRow(corredor.toArrayString());
+        lista.add(corredor);
+    }
+     public void anadirCorredor( ArrayList<Corredor> lista){
+        for(int i = 0;i<lista.size();i++){
+        dtm = (DefaultTableModel)jTableCorredores.getModel();
+        dtm.addRow(lista.get(i).toArrayString());
+        }
+        
+        
     }
     
     /**
