@@ -10,13 +10,15 @@ package com.olmo.GUI;
  * @author OLMO
  */
 public class Principal extends javax.swing.JFrame {
-
+ Corredores corredores;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,7 +29,63 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuCorredores = new javax.swing.JMenu();
+        jMenuAltaCorredor = new javax.swing.JMenu();
+        jMenuBajaCorredor = new javax.swing.JMenu();
+        jMenuModificarCorredor = new javax.swing.JMenu();
+        jMenuVerCorredores = new javax.swing.JMenu();
+        jMenuCarrerasNo = new javax.swing.JMenu();
+        jMenuAltaCarreras = new javax.swing.JMenu();
+        jMenuBajaCarreras = new javax.swing.JMenu();
+        jMenuModificarCarrera = new javax.swing.JMenu();
+        jMenuCarreras = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMenuCorredores.setText("Corredores");
+        jMenuCorredores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCorredoresActionPerformed(evt);
+            }
+        });
+
+        jMenuAltaCorredor.setText("Alta");
+        jMenuCorredores.add(jMenuAltaCorredor);
+
+        jMenuBajaCorredor.setText("Baja");
+        jMenuCorredores.add(jMenuBajaCorredor);
+
+        jMenuModificarCorredor.setText("Modificar");
+        jMenuCorredores.add(jMenuModificarCorredor);
+
+        jMenuVerCorredores.setText("Ver Corredores");
+        jMenuVerCorredores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuVerCorredoresMouseClicked(evt);
+            }
+        });
+        jMenuCorredores.add(jMenuVerCorredores);
+
+        jMenuBar1.add(jMenuCorredores);
+
+        jMenuCarrerasNo.setText("Carreras no realizadas");
+
+        jMenuAltaCarreras.setText("Alta");
+        jMenuCarrerasNo.add(jMenuAltaCarreras);
+
+        jMenuBajaCarreras.setText("Baja");
+        jMenuCarrerasNo.add(jMenuBajaCarreras);
+
+        jMenuModificarCarrera.setText("Modificar");
+        jMenuCarrerasNo.add(jMenuModificarCarrera);
+
+        jMenuBar1.add(jMenuCarrerasNo);
+
+        jMenuCarreras.setText("Carreras realizadas");
+        jMenuBar1.add(jMenuCarreras);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,11 +95,20 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 451, Short.MAX_VALUE)
+            .addGap(0, 428, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCorredoresActionPerformed
+      
+    }//GEN-LAST:event_jMenuCorredoresActionPerformed
+
+    private void jMenuVerCorredoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuVerCorredoresMouseClicked
+        corredores = new Corredores(this,true);
+       corredores.setVisible(true);
+    }//GEN-LAST:event_jMenuVerCorredoresMouseClicked
 
     /**
      * @param args the command line arguments
@@ -79,5 +146,16 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenuAltaCarreras;
+    private javax.swing.JMenu jMenuAltaCorredor;
+    private javax.swing.JMenu jMenuBajaCarreras;
+    private javax.swing.JMenu jMenuBajaCorredor;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuCarreras;
+    private javax.swing.JMenu jMenuCarrerasNo;
+    private javax.swing.JMenu jMenuCorredores;
+    private javax.swing.JMenu jMenuModificarCarrera;
+    private javax.swing.JMenu jMenuModificarCorredor;
+    private javax.swing.JMenu jMenuVerCorredores;
     // End of variables declaration//GEN-END:variables
 }

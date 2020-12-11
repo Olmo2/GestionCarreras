@@ -8,16 +8,16 @@ public class Corredor {
 	private String DNI;
 	private Date fecha;
 	private String dir;
-	private int tlf;
+	private Integer tlf;
 	
 	
 	public Corredor() {
 		super();
 	}
-	public Corredor(String nombre, String dNI, Date fecha, String dir, int tlf) {
+	public Corredor(String nombre, String dNI, Date fecha, String dir, Integer tlf) {
 		super();
 		this.nombre = nombre;
-		DNI = dNI;
+		this.DNI = dNI;
 		this.fecha = fecha;
 		this.dir = dir;
 		this.tlf = tlf;
@@ -46,12 +46,22 @@ public class Corredor {
 	public void setDir(String dir) {
 		this.dir = dir;
 	}
-	public int getTlf() {
+	public Integer getTlf() {
 		return tlf;
 	}
-	public void setTlf(int tlf) {
+	public void setTlf(Integer tlf) {
 		this.tlf = tlf;
 	}
+          public String[] toArrayString(){
+         String[] values = new String[5];
+         values[0]=nombre;
+         values[1]=DNI;
+         values[2]=fecha.toString();
+         values[3]=dir;
+         values[4]=tlf.toString();
+        
+        return values;
+    }
 	@Override
 	public String toString() {
 		return "Corredor [nombre=" + nombre + ", DNI=" + DNI + ", fecha=" + fecha + ", dir=" + dir + ", tlf=" + tlf

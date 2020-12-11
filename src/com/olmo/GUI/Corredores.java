@@ -5,20 +5,50 @@
  */
 package com.olmo.GUI;
 
+
+import com.olmo.negocio.Corredores.Corredor;
+import java.sql.Date;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author OLMO
  */
 public class Corredores extends javax.swing.JDialog {
-
+        DefaultTableModel dtm;
+        /*
+        year - the year minus 1900.
+        month - the month between 0-11.
+        date - the day of the month between 1-31*/
+        Date date= new Date(99,8,23);
+    
+        Corredor corredor=new Corredor("Olmo","71729223C",date,"C/Falsa 123",608013779);
     /**
      * Creates new form Corredores
      */
+        Principal principal;
+        
     public Corredores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+         principal=(Principal)parent;
         initComponents();
+        inicializarTabla();
     }
 
+    /*inicializar el modelo de la tabla*/
+    public void inicializarTabla(){
+        dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[]{"Nombre","DNI","Fecha de Nacimiento","Direccion","Teléfono de contacto"});
+        jTableCorredores.setModel(dtm); 
+        anadirCorredor(corredor);
+    }
+    
+    /*Método de añadir corredor*/
+     public void anadirCorredor(Corredor corredor){
+        dtm = (DefaultTableModel)jTableCorredores.getModel();
+        dtm.addRow(corredor.toArrayString());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,21 +58,128 @@ public class Corredores extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCorredores = new javax.swing.JTable();
+        jLabelCorredores = new javax.swing.JLabel();
+        jButtonAlta = new javax.swing.JButton();
+        jButtonBaja = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
+        jButtonVolver = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "DNI", "Fecha de nacimiento", "Dirección ", "Teléfono de contacto"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableCorredores);
+
+        jLabelCorredores.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabelCorredores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCorredores.setText("Corredores");
+
+        jButtonAlta.setText("Alta");
+        jButtonAlta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonAltaMouseClicked(evt);
+            }
+        });
+
+        jButtonBaja.setText("Baja");
+        jButtonBaja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonBajaMouseClicked(evt);
+            }
+        });
+
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
+
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonVolverMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(jButtonBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84)
+                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonVolver))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAlta)
+                    .addComponent(jButtonBaja)
+                    .addComponent(jButtonModificar))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jButtonVolverMouseClicked
+
+    private void jButtonAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAltaMouseClicked
+        AltaCorredores altaCorredores = new AltaCorredores(principal,this,true);
+        altaCorredores.setVisible(true);
+    }//GEN-LAST:event_jButtonAltaMouseClicked
+
+    private void jButtonBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBajaMouseClicked
+        anadirCorredor(corredor);
+    }//GEN-LAST:event_jButtonBajaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -87,5 +224,12 @@ public class Corredores extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAlta;
+    private javax.swing.JButton jButtonBaja;
+    private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabelCorredores;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableCorredores;
     // End of variables declaration//GEN-END:variables
 }
