@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.olmo.GUI;
+package com.olmo.GUI.Baja;
 
+import com.olmo.GUI.Corredores;
 import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Corredores.Corredor;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class BajaCorredores extends javax.swing.JDialog {
         super(parent, modal);
         corredores=(Corredores) dialog;
         initComponents();
+         setLocationRelativeTo(null);
         op = new Operaciones();
         op.inicializarTablaBaja(dtm,jTableCorredores);
         op.anadirCorredoresId(dtm, corredores.getLista(), jTableCorredores);

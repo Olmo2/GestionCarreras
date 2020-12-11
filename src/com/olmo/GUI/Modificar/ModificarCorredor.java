@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.olmo.GUI;
+package com.olmo.GUI.Modificar;
 
+import com.olmo.GUI.Corredores;
 import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Corredores.Corredor;
 import java.sql.Date;
@@ -37,6 +38,7 @@ public class ModificarCorredor extends javax.swing.JDialog {
          corredor = corredores.getLista().get(index);
          op = new Operaciones();
         initComponents();
+         setLocationRelativeTo(null);
         jTextFieldNombre.setText(corredor.getNombre());
         jTextFieldDni.setText(corredor.getDNI());
         jTextFieldFecha.setText(corredor.getFecha().toString());

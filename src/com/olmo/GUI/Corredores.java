@@ -6,6 +6,9 @@
 package com.olmo.GUI;
 
 
+import com.olmo.GUI.Baja.BajaCorredores;
+import com.olmo.GUI.Alta.AltaCorredores;
+import com.olmo.GUI.Modificar.ModificarCorredores;
 import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Corredores.Corredor;
 import java.sql.Date;
@@ -40,6 +43,7 @@ public class Corredores extends javax.swing.JDialog {
         super(parent, modal);
          principal=(Principal)parent;
          initComponents();
+          setLocationRelativeTo(null);
           op =new Operaciones();
          date= new Date(99,8,23);
         corredor =new Corredor("Olmo","71729223C",date,"C/Falsa 123",608013779);

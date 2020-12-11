@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.olmo.GUI;
+package com.olmo.GUI.Alta;
 
+import com.olmo.GUI.Corredores;
+import com.olmo.GUI.Principal;
 import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Corredores.Corredor;
 import java.sql.Date;
@@ -33,6 +35,7 @@ public class AltaCorredores extends javax.swing.JDialog {
         corredores = (Corredores) dialog;
         principal = (Principal) parent;
         initComponents();
+         setLocationRelativeTo(null);
         op = new Operaciones();
         jLabelErrorNombre.setVisible(false);
         jLabelErrorDni.setVisible(false);

@@ -5,6 +5,10 @@
  */
 package com.olmo.GUI;
 
+import com.olmo.GUI.Baja.BajaCorredores;
+import com.olmo.GUI.Alta.AltaCorredores;
+import com.olmo.GUI.Modificar.ModificarCorredores;
+
 /**
  *
  * @author OLMO
@@ -20,6 +24,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         corredores = new Corredores(this,true);
+         setLocationRelativeTo(null);
     }
     
     
@@ -46,6 +51,8 @@ public class Principal extends javax.swing.JFrame {
         jMenuCarreras = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestión de Carrera");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jMenuCorredores.setText("Corredores");
         jMenuCorredores.addActionListener(new java.awt.event.ActionListener() {
