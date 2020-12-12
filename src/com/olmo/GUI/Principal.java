@@ -52,6 +52,8 @@ public class Principal extends javax.swing.JFrame {
        op.anadirCarrera(c, lista);
          op.inicializarTablaCarrera(dtm,jTableCarreras);
         op.anadirCarreras(dtm, lista, jTableCarreras);
+        
+        jTableCarreras.setToolTipText("LOL");
          
     }
     
@@ -97,7 +99,15 @@ public class Principal extends javax.swing.JFrame {
             new String [] {
                 "Nombre", "Fecha de la carrera", "Lugar de la carrera", "Número máximo de participantes", "Corredores"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableCarreras);
 
         jButtonBajaCarreras.setText("Baja");

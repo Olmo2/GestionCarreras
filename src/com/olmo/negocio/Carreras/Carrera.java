@@ -1,5 +1,6 @@
 package com.olmo.negocio.Carreras;
 
+import com.olmo.logica.Operaciones;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
@@ -9,12 +10,13 @@ import com.olmo.negocio.Corredores.Dorsal;
 
 public class Carrera {
 
+    Operaciones op = new Operaciones();
     private String nombre;
     private Date fecha;
     private String lugar;
     private Integer maxPart;
-    private Map<Corredor, Dorsal> corredoresLlegada;
     private Map<Corredor, Dorsal> corredores;
+    private Map<Corredor, Dorsal> corredoresLlegada;
 
     public Carrera() {
         super();
@@ -25,8 +27,9 @@ public class Carrera {
         this.fecha = fecha;
         this.lugar = lugar;
         this.maxPart = maxPart;
-        this.corredoresLlegada = corredoresLlegada;
         this.corredores = corredores;
+        this.corredoresLlegada = corredoresLlegada;
+
     }
 
     public String getNombre() {
@@ -77,18 +80,18 @@ public class Carrera {
         this.corredores = corredores;
     }
 
-    
-    public String[] toArrayString(){
-         String[] values = new String[6];
-         values[0]=nombre;
-         values[1]=fecha.toString();
-         values[2]=lugar;
-         values[3]=maxPart.toString();
-         values[4]=corredoresLlegada.toString();
-         values[5]=corredores.toString();
-         
+    public String[] toArrayString() {
+        String[] values = new String[6];
+        values[0] = nombre;
+        values[1] = fecha.toString();
+        values[2] = lugar;
+        values[3] = maxPart.toString();
+        values[4] = op.corredoresToString(corredores);
+        values[5] = op.corredoresToString(corredoresLlegada);
+
         return values;
     }
+
     @Override
     public String toString() {
         return "Carrera [Nombre=" + nombre + ", fecha=" + fecha + ", lugar=" + lugar + ", maxPart=" + maxPart

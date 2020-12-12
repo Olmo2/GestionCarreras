@@ -10,7 +10,12 @@ import com.olmo.GUI.Principal;
 import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Carreras.Carrera;
 import com.olmo.negocio.Corredores.Corredor;
+import com.olmo.negocio.Corredores.Dorsal;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
@@ -28,7 +33,7 @@ public class AltaCarreras extends javax.swing.JDialog {
     Principal principal;
      Pattern pattern;
     Matcher m;
-    Boolean validNombre, validDni, validFecha, validDir, validTlf;
+    Boolean validNombre, validMax, validFecha, validLugar, validLista;
     Operaciones op;
     DefaultListModel<Corredor> listModel ;
     public AltaCarreras(java.awt.Frame parent, boolean modal) {
@@ -43,6 +48,8 @@ public class AltaCarreras extends javax.swing.JDialog {
          listModel = new DefaultListModel();
          op.llenarJList(listModel);
          jListParticipantes.setModel(listModel);
+         jListParticipantes.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+          validNombre= validMax= validFecha= validLugar= validLista=false;
          jLabelErrorDir.setVisible(false);
          jLabelErrorFecha.setVisible(false);
          jLabelErrorNombre.setVisible(false);
@@ -153,6 +160,11 @@ public class AltaCarreras extends javax.swing.JDialog {
             }
         });
 
+        jTextFieldMax.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldMaxFocusLost(evt);
+            }
+        });
         jTextFieldMax.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldMaxActionPerformed(evt);
@@ -308,17 +320,17 @@ public class AltaCarreras extends javax.swing.JDialog {
 
     private void jTextFieldLugarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldLugarFocusLost
         if (jTextFieldLugar.getText().isEmpty()) {
-            validDir = false;
+            validLugar = false;
             jLabelErrorDir.setVisible(true);
         } else {
-            validDir = true;
+            validLugar = true;
             jLabelErrorDir.setVisible(false);
         }
     }//GEN-LAST:event_jTextFieldLugarFocusLost
 
     private void jButtonAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAltaMouseClicked
-        if (validNombre && validDni && validFecha && validDir && validTlf) {
-
+        if (validNombre && validMax && validFecha && validLugar && validLista) {
+                List<Corredor> listaCorredoresSelect ;
             String raw = jTextFieldFecha.getText();
             String[] arr = raw.split("-");
             for (int i = 0; i < arr.length; i++) {
@@ -329,10 +341,18 @@ public class AltaCarreras extends javax.swing.JDialog {
           //  Corredor corredor = new Corredor(jTextFieldNombre.getText(), jTextFieldDni.getText(), date,
            //     jTextFieldDir.getText(), Integer.parseInt(jTextFieldTlf.getText()));
          /*TODO añadir mapa */
+         
+            listaCorredoresSelect = jListParticipantes.getSelectedValuesList();
+            Map<Corredor,Dorsal> map = new HashMap<>();
+            for(Corredor corredor: listaCorredoresSelect){
+                map.put(corredor,new Dorsal(0,0));
+            }
             Carrera carrera = new Carrera(jTextFieldNombre.getText(),date,jTextFieldLugar.getText(),
-                    Integer.parseInt(jTextFieldMax.getText()),null, null);
+                    Integer.parseInt(jTextFieldMax.getText()),map, map);
             op.anadirCarrera(carrera, principal.getLista());
             op.anadirCarreras(principal.getDtm(), principal.getLista(), principal.getjTableCarreras());
+            System.out.println(carrera);
+           
             this.dispose();
         } else {
             jLabelErrores.setVisible(true);
@@ -355,10 +375,22 @@ public class AltaCarreras extends javax.swing.JDialog {
     private void jListParticipantesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListParticipantesValueChanged
         if(jListParticipantes.getSelectedIndex()==-1){
             jLabelErrorLista.setVisible(true);
+            validLista=false;
         }else{
+            validLista=true;
              jLabelErrorLista.setVisible(false);
         }
     }//GEN-LAST:event_jListParticipantesValueChanged
+
+    private void jTextFieldMaxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldMaxFocusLost
+         if(jTextFieldMax.getText().isEmpty()){
+             validMax=false;
+            jLabelErrorMax.setVisible(true);
+        }else{
+             validMax=true;
+             jLabelErrorMax.setVisible(false);
+        }
+    }//GEN-LAST:event_jTextFieldMaxFocusLost
 
     /**
      * @param args the command line arguments

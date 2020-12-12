@@ -7,8 +7,11 @@ package com.olmo.logica;
 
 import com.olmo.negocio.Carreras.Carrera;
 import com.olmo.negocio.Corredores.Corredor;
+import com.olmo.negocio.Corredores.Dorsal;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JTable;
@@ -80,7 +83,7 @@ public class Operaciones {
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String[]{"Nombre", "Fecha de la carrera",
             "Lugar de la carrera", "Número máximo de participantes",
-            "CorredoresLlegada", "Corredores"});
+            "Corredores", "CorredoresLlegada"});
         table.setModel(dtm);
         //anadirCorredores(dtm, lista, jTableCorredores);
     }
@@ -101,6 +104,21 @@ public class Operaciones {
             dtm.addRow(lista.get(i).toArrayString());
         }
     }
+     
+     public String corredoresToString(Map<Corredor,Dorsal> map){
+        String str="";
+        int i=0;
+         for (Map.Entry<Corredor,Dorsal> entry : map.entrySet())  {
+             
+         
+        str=  str.concat(entry.getKey().getNombre() + ",");
+         
+    }
+         str = str.substring(0,str.length()-1);
+          System.out.println(str);
+          return str;
+         
+     }
      
      public void llenarJList(DefaultListModel<Corredor> listModel){
          listModel.addElement(corredor);
