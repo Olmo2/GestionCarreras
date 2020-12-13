@@ -5,9 +5,11 @@
  */
 package com.olmo.logica;
 
+import com.olmo.GUI.Principal;
 import com.olmo.negocio.Carreras.Carrera;
 import com.olmo.negocio.Corredores.Corredor;
 import com.olmo.negocio.Corredores.Dorsal;
+import java.awt.event.MouseEvent;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +24,19 @@ import javax.swing.table.DefaultTableModel;
  * @author OLMO
  */
 public class Operaciones {
- Corredor  corredor =new Corredor("Olmo","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
- Corredor  corredor2 =new Corredor("Anakin","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
+    
+ Corredor  c1 =new Corredor("Olmo","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
+ Corredor  c2 =new Corredor("Anakin","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
+ 
+ Corredor  c3 =new Corredor("SEBULBA","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
+ Corredor  c4 =new Corredor("BEN QUADINAROS","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
+ Corredor  c5 =new Corredor("RATTS TYERELL","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
+ Corredor  c6 =new Corredor("Qui-Gon Jinn","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
+ Corredor  c7 =new Corredor("Obi-Wan Kenobi","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
+ 
+ 
+ 
+ 
     public void inicializarTabla(DefaultTableModel dtm, JTable table) {
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String[]{"Nombre", "DNI", "Fecha de Nacimiento", "Direccion", "Teléfono de contacto"});
@@ -83,7 +96,15 @@ public class Operaciones {
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String[]{"Nombre", "Fecha de la carrera",
             "Lugar de la carrera", "Número máximo de participantes",
-            "Corredores", "CorredoresLlegada"});
+            "Corredores"});
+        table.setModel(dtm);
+        //anadirCorredores(dtm, lista, jTableCorredores);
+    }
+      public void inicializarTablaBajaCarrera(DefaultTableModel dtm, JTable table) {
+        dtm = new DefaultTableModel();
+        dtm.setColumnIdentifiers(new String[]{"ID", "Nombre", "Fecha de la carrera",
+            "Lugar de la carrera", "Número máximo de participantes",
+            "Corredores"});
         table.setModel(dtm);
         //anadirCorredores(dtm, lista, jTableCorredores);
     }
@@ -105,6 +126,22 @@ public class Operaciones {
         }
     }
      
+        public void anadirCarrerasId(DefaultTableModel dtm, ArrayList<Carrera> lista, JTable table) {
+
+        dtm = (DefaultTableModel) table.getModel();
+
+        if (dtm.getRowCount() > 0) {
+            for (int i = dtm.getRowCount() - 1; i > -1; i--) {
+                dtm.removeRow(i);
+            }
+        }
+
+        for (int i = 0; i < lista.size(); i++) {
+            dtm.addRow(lista.get(i).toArrayString(i + 1));
+        }
+        System.out.println(dtm.getRowCount());
+    }
+     
      public String corredoresToString(Map<Corredor,Dorsal> map){
         String str="";
         int i=0;
@@ -121,7 +158,21 @@ public class Operaciones {
      }
      
      public void llenarJList(DefaultListModel<Corredor> listModel){
-         listModel.addElement(corredor);
-         listModel.addElement(corredor2);
+         listModel.addElement(c1);
+         listModel.addElement(c2);
+         listModel.addElement(c3);
+         listModel.addElement(c4);
+         listModel.addElement(c5);
+         listModel.addElement(c6);
+         listModel.addElement(c7);
+         
+         
+         
      }
+    
+    /* public void toolTip(JTable table, MouseEvent e){
+         for(int i=0;i<table.getRowCount();i++){
+             
+         }
+     }*/
 }

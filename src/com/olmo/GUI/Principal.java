@@ -8,6 +8,7 @@ package com.olmo.GUI;
 import com.olmo.GUI.Alta.AltaCarreras;
 import com.olmo.GUI.Baja.BajaCorredores;
 import com.olmo.GUI.Alta.AltaCorredores;
+import com.olmo.GUI.Baja.BajaCarreras;
 import com.olmo.GUI.Modificar.ModificarCorredores;
 import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Carreras.Carrera;
@@ -19,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -37,6 +39,7 @@ public class Principal extends javax.swing.JFrame {
      private DefaultTableModel dtm;
      Operaciones op;
      AltaCarreras altaCarreras;
+     BajaCarreras bajaCarreras;
     public Principal() {
         initComponents();
         corredores = new Corredores(this,true);
@@ -53,7 +56,12 @@ public class Principal extends javax.swing.JFrame {
          op.inicializarTablaCarrera(dtm,jTableCarreras);
         op.anadirCarreras(dtm, lista, jTableCarreras);
         
-        jTableCarreras.setToolTipText("LOL");
+        
+        
+        /*JTableHeader header = jTableCarreras.getTableHeader();
+        header.setToolTipText("LOL");*/
+        
+        
          
     }
     
@@ -108,9 +116,15 @@ public class Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableCarreras.setToolTipText("");
         jScrollPane1.setViewportView(jTableCarreras);
 
         jButtonBajaCarreras.setText("Baja");
+        jButtonBajaCarreras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonBajaCarrerasMouseClicked(evt);
+            }
+        });
 
         jButtonModificarCarreras.setText("Modificar");
 
@@ -234,6 +248,11 @@ public class Principal extends javax.swing.JFrame {
        altaCarreras = new AltaCarreras(this,true);
        altaCarreras.setVisible(true);
     }//GEN-LAST:event_jButtonAltaCarrerasMouseClicked
+
+    private void jButtonBajaCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBajaCarrerasMouseClicked
+         bajaCarreras = new BajaCarreras(this,true);
+       bajaCarreras.setVisible(true);
+    }//GEN-LAST:event_jButtonBajaCarrerasMouseClicked
 
     public ArrayList<Carrera> getLista() {
         return lista;

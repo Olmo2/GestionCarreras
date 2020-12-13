@@ -2,7 +2,6 @@ package com.olmo.negocio.Carreras;
 
 import com.olmo.logica.Operaciones;
 import java.sql.Date;
-import java.util.List;
 import java.util.Map;
 
 import com.olmo.negocio.Corredores.Corredor;
@@ -17,6 +16,7 @@ public class Carrera {
     private Integer maxPart;
     private Map<Corredor, Dorsal> corredores;
     private Map<Corredor, Dorsal> corredoresLlegada;
+    private Boolean Started;
 
     public Carrera() {
         super();
@@ -31,6 +31,15 @@ public class Carrera {
         this.corredoresLlegada = corredoresLlegada;
 
     }
+
+    public Carrera(String nombre, Date fecha, String lugar, Integer maxPart, Map<Corredor, Dorsal> corredores) {
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.lugar = lugar;
+        this.maxPart = maxPart;
+        this.corredores = corredores;
+    }
+    
 
     public String getNombre() {
         return nombre;
@@ -80,7 +89,40 @@ public class Carrera {
         this.corredores = corredores;
     }
 
+    public Boolean getStarted() {
+        return Started;
+    }
+
+    public void setStarted(Boolean Started) {
+        this.Started = Started;
+    }
+    
+
     public String[] toArrayString() {
+        String[] values = new String[6];
+        values[0] = nombre;
+        values[1] = fecha.toString();
+        values[2] = lugar;
+        values[3] = maxPart.toString();
+        values[4] = op.corredoresToString(corredores);
+        
+
+        return values;
+    }
+     public String[] toArrayString(Integer id) {
+        String[] values = new String[6];
+        values[0]= id.toString();
+        values[1] = nombre;
+        values[2] = fecha.toString();
+        values[3] = lugar;
+        values[4] = maxPart.toString();
+        values[5] = op.corredoresToString(corredores);
+        
+
+        return values;
+    }
+    
+      public String[] toArrayStringTerminada() {
         String[] values = new String[6];
         values[0] = nombre;
         values[1] = fecha.toString();
