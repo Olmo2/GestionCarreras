@@ -27,7 +27,7 @@ public class Corredores extends javax.swing.JDialog {
         year - the year minus 1900.
         month - the month between 0-11.
         date - the day of the month between 1-31*/
-       // private ArrayList<Corredor> lista = new ArrayList<Corredor>();
+        private ArrayList<Corredor> lista = new ArrayList<Corredor>();
         Corredor corredor;
         Date date;
         
@@ -48,10 +48,10 @@ public class Corredores extends javax.swing.JDialog {
          date= new Date(99,8,23);
         corredor =new Corredor("Olmo","71729223C",date,"C/Falsa 123",608013779);
         
-        principal.getListaCorredores().add(corredor);
+        lista.add(corredor);
         op.inicializarTabla(dtm,jTableCorredores);
         //inicializarTabla(dtm,jTableCorredores);
-        op.anadirCorredores(dtm,  principal.getListaCorredores(), jTableCorredores);
+        op.anadirCorredores(dtm, lista, jTableCorredores);
         
     }
 
@@ -64,6 +64,13 @@ public class Corredores extends javax.swing.JDialog {
         return dtm;
     }
 
+    public ArrayList<Corredor> getLista() {
+        return lista;
+    }
+
+    public void setLista(ArrayList<Corredor> lista) {
+        this.lista = lista;
+    }
     
     
     
@@ -233,8 +240,8 @@ public class Corredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonModificarMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       op.anadirCorredor(corredor, principal.getListaCorredores());
-     op.anadirCorredores(dtm,  principal.getListaCorredores(), jTableCorredores);
+       op.anadirCorredor(corredor,lista);
+     op.anadirCorredores(dtm, lista, jTableCorredores);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

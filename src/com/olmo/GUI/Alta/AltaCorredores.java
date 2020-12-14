@@ -267,6 +267,10 @@ public class AltaCorredores extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDniActionPerformed
+
     private void jButtonAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAltaMouseClicked
         if (validNombre && validDni && validFecha && validDir && validTlf) {
 
@@ -280,8 +284,8 @@ public class AltaCorredores extends javax.swing.JDialog {
             Corredor corredor = new Corredor(jTextFieldNombre.getText(), jTextFieldDni.getText(), date,
                     jTextFieldDir.getText(), Integer.parseInt(jTextFieldTlf.getText()));
             System.out.println(corredor);
-            op.anadirCorredor(corredor,  principal.getListaCorredores());
-            op.anadirCorredores(corredores.getDtm(),  principal.getListaCorredores(), corredores.getjTableCorredores());
+            op.anadirCorredor(corredor, corredores.getLista());
+            op.anadirCorredores(corredores.getDtm(), corredores.getLista(), corredores.getjTableCorredores());
             this.dispose();
         } else {
             jLabelErrores.setVisible(true);
@@ -298,6 +302,18 @@ public class AltaCorredores extends javax.swing.JDialog {
             jLabelErrorNombre.setVisible(false);
         }
     }//GEN-LAST:event_jTextFieldNombreFocusLost
+
+    private void jTextFieldDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDniFocusLost
+        pattern = Pattern.compile("([0-9]{8}[A-Z]{1})");
+        m = pattern.matcher(jTextFieldDni.getText());
+        if (!m.matches()) {
+            validDni = false;
+            jLabelErrorDni.setVisible(true);
+        } else {
+            validDni = true;
+            jLabelErrorDni.setVisible(false);
+        }
+    }//GEN-LAST:event_jTextFieldDniFocusLost
 
     private void jTextFieldFechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFechaFocusLost
         pattern = Pattern.compile("([0-9]{4}-[0-9]{2}-[0-9]{2})");
@@ -342,30 +358,14 @@ public class AltaCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
-       op.anadirCorredores(corredores.getDtm(), principal.getListaCorredores(), corredores.getjTableCorredores());
+       op.anadirCorredores(corredores.getDtm(), corredores.getLista(), corredores.getjTableCorredores());
         this.dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        op.anadirCorredores(corredores.getDtm(),  principal.getListaCorredores(), corredores.getjTableCorredores());
+        op.anadirCorredores(corredores.getDtm(), corredores.getLista(), corredores.getjTableCorredores());
         this.dispose();
     }//GEN-LAST:event_formWindowClosed
-
-    private void jTextFieldDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDniActionPerformed
-
-    private void jTextFieldDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDniFocusLost
-        pattern = Pattern.compile("([0-9]{8}[A-Z]{1})");
-        m = pattern.matcher(jTextFieldDni.getText());
-        if (!m.matches()) {
-            validDni = false;
-            jLabelErrorDni.setVisible(true);
-        } else {
-            validDni = true;
-            jLabelErrorDni.setVisible(false);
-        }
-    }//GEN-LAST:event_jTextFieldDniFocusLost
 
     /**
      * @param args the command line arguments

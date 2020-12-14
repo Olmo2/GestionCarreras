@@ -9,7 +9,6 @@ import com.olmo.GUI.Alta.AltaCarreras;
 import com.olmo.GUI.Baja.BajaCorredores;
 import com.olmo.GUI.Alta.AltaCorredores;
 import com.olmo.GUI.Baja.BajaCarreras;
-import com.olmo.GUI.Modificar.ModificarCarreras;
 import com.olmo.GUI.Modificar.ModificarCorredores;
 import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Carreras.Carrera;
@@ -36,35 +35,26 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
   
-     private ArrayList<Carrera> listaCarreras;
-      private ArrayList<Corredor> listaCorredores = new ArrayList<Corredor>();
+     private ArrayList<Carrera> lista;
      private DefaultTableModel dtm;
      Operaciones op;
      AltaCarreras altaCarreras;
      BajaCarreras bajaCarreras;
-     ModificarCarreras modificarCarreras;
-     Carrera c;
-     Corredor  corredor ;
-    
     public Principal() {
         initComponents();
         corredores = new Corredores(this,true);
         op=new Operaciones();
          setLocationRelativeTo(null);
-           corredor =new Corredor("Paco","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
-          op.llenarLista(listaCorredores);
-          listaCorredores.add(corredor);
-   
+         Corredor  corredor =new Corredor("Olmo","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
          Dorsal dorsal = new Dorsal(60,73);
          Map<Corredor,Dorsal> map =new LinkedHashMap<Corredor,Dorsal>();
          map.put(corredor, dorsal);
        
-          c = new Carrera("Clásica de Boonta Eve", new Date(99,04,19),"Tatooine",10,map,map);
-         listaCarreras=new ArrayList<Carrera>();
-       op.anadirCarrera(c, listaCarreras);
+         Carrera c = new Carrera("Clásica de Boonta Eve", new Date(99,04,19),"Tatooine",10,map,map);
+         lista=new ArrayList<Carrera>();
+       op.anadirCarrera(c, lista);
          op.inicializarTablaCarrera(dtm,jTableCarreras);
-        op.anadirCarreras(dtm, listaCarreras, jTableCarreras);
-        
+        op.anadirCarreras(dtm, lista, jTableCarreras);
         
         
         
@@ -92,7 +82,6 @@ public class Principal extends javax.swing.JFrame {
         jButtonBajaCarreras = new javax.swing.JButton();
         jButtonModificarCarreras = new javax.swing.JButton();
         jButtonAltaCarreras = new javax.swing.JButton();
-        jButtonAddCarrera = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCorredores = new javax.swing.JMenu();
         jMenuAltaCorredor = new javax.swing.JMenu();
@@ -138,23 +127,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButtonModificarCarreras.setText("Modificar");
-        jButtonModificarCarreras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonModificarCarrerasMouseClicked(evt);
-            }
-        });
 
         jButtonAltaCarreras.setText("Alta");
         jButtonAltaCarreras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonAltaCarrerasMouseClicked(evt);
-            }
-        });
-
-        jButtonAddCarrera.setText("Carrera +");
-        jButtonAddCarrera.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonAddCarreraMouseClicked(evt);
             }
         });
 
@@ -211,18 +188,14 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(247, 247, 247)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonAltaCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jButtonBajaCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jButtonModificarCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAddCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73))))
+                        .addComponent(jButtonModificarCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(69, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,9 +205,7 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButtonAddCarrera))
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBajaCarreras)
@@ -242,7 +213,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButtonAltaCarreras))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,17 +254,13 @@ public class Principal extends javax.swing.JFrame {
        bajaCarreras.setVisible(true);
     }//GEN-LAST:event_jButtonBajaCarrerasMouseClicked
 
-    private void jButtonAddCarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAddCarreraMouseClicked
-          op.anadirCarrera(c,listaCarreras);
-     op.anadirCarreras(dtm, listaCarreras, jTableCarreras);
-    }//GEN-LAST:event_jButtonAddCarreraMouseClicked
+    public ArrayList<Carrera> getLista() {
+        return lista;
+    }
 
-    private void jButtonModificarCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarCarrerasMouseClicked
-       modificarCarreras = new ModificarCarreras(this,true);
-      modificarCarreras.setVisible(true);
-    }//GEN-LAST:event_jButtonModificarCarrerasMouseClicked
-
-  
+    public void setLista(ArrayList<Carrera> lista) {
+        this.lista = lista;
+    }
 
     public DefaultTableModel getDtm() {
         return dtm;
@@ -309,22 +276,6 @@ public class Principal extends javax.swing.JFrame {
 
     public void setjTableCarreras(JTable jTableCarreras) {
         this.jTableCarreras = jTableCarreras;
-    }
-
-    public ArrayList<Carrera> getListaCarreras() {
-        return listaCarreras;
-    }
-
-    public void setListaCarreras(ArrayList<Carrera> listaCarreras) {
-        this.listaCarreras = listaCarreras;
-    }
-
-    public ArrayList<Corredor> getListaCorredores() {
-        return listaCorredores;
-    }
-
-    public void setListaCorredores(ArrayList<Corredor> listaCorredores) {
-        this.listaCorredores = listaCorredores;
     }
 
     
@@ -365,7 +316,6 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAddCarrera;
     private javax.swing.JButton jButtonAltaCarreras;
     private javax.swing.JButton jButtonBajaCarreras;
     private javax.swing.JButton jButtonModificarCarreras;

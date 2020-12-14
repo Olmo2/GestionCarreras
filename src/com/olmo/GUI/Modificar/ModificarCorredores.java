@@ -37,7 +37,7 @@ public class ModificarCorredores extends javax.swing.JDialog {
          setLocationRelativeTo(null);
         op = new Operaciones();
         op.inicializarTablaBaja(dtm,jTableCorredores);
-        op.anadirCorredoresId(dtm,  principal.getListaCorredores(), jTableCorredores);
+        op.anadirCorredoresId(dtm, corredores.getLista(), jTableCorredores);
     }
 
     /**
@@ -163,7 +163,7 @@ public class ModificarCorredores extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarMouseClicked
-        ArrayList<Corredor>lista =  principal.getListaCorredores();
+        ArrayList<Corredor>lista = corredores.getLista();
         int i=Integer.parseInt(jTextFieldIDModificar.getText())-1;
         lista.get(i);
         modificarCorredor = new ModificarCorredor(principal,corredores,this,i,true);
@@ -177,12 +177,12 @@ public class ModificarCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldIDModificarActionPerformed
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
-        op.anadirCorredores(corredores.getDtm(), principal.getListaCorredores(), corredores.getjTableCorredores());
+        op.anadirCorredores(corredores.getDtm(), corredores.getLista(), corredores.getjTableCorredores());
         this.dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-         op.anadirCorredores(corredores.getDtm(),  principal.getListaCorredores(), corredores.getjTableCorredores());
+         op.anadirCorredores(corredores.getDtm(), corredores.getLista(), corredores.getjTableCorredores());
     }//GEN-LAST:event_formWindowClosed
 
     public JTable getjTableCorredores() {
