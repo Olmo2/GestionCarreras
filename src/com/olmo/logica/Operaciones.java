@@ -24,19 +24,28 @@ import javax.swing.table.DefaultTableModel;
  * @author OLMO
  */
 public class Operaciones {
+
+    Corredor c1 = new Corredor("Olmo", "71729223C", new Date(99, 05, 28), "C/Falsa 123", 608013779);
+    Corredor c2 = new Corredor("Anakin", "71729223C", new Date(99, 05, 28), "C/Falsa 123", 608013779);
+    Corredor c3 = new Corredor("SEBULBA", "71729223C", new Date(99, 05, 28), "C/Falsa 123", 608013779);
+    Corredor c4 = new Corredor("BEN QUADINAROS", "71729223C", new Date(99, 05, 28), "C/Falsa 123", 608013779);
+    Corredor c5 = new Corredor("RATTS TYERELL", "71729223C", new Date(99, 05, 28), "C/Falsa 123", 608013779);
+    Corredor c6 = new Corredor("Qui-Gon Jinn", "71729223C", new Date(99, 05, 28), "C/Falsa 123", 608013779);
+    Corredor c7 = new Corredor("Obi-Wan Kenobi", "71729223C", new Date(99, 05, 28), "C/Falsa 123", 608013779);
+    List<Corredor> list = new ArrayList<Corredor>();
     
- Corredor  c1 =new Corredor("Olmo","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
- Corredor  c2 =new Corredor("Anakin","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
- 
- Corredor  c3 =new Corredor("SEBULBA","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
- Corredor  c4 =new Corredor("BEN QUADINAROS","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
- Corredor  c5 =new Corredor("RATTS TYERELL","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
- Corredor  c6 =new Corredor("Qui-Gon Jinn","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
- Corredor  c7 =new Corredor("Obi-Wan Kenobi","71729223C",new Date(99,05,28),"C/Falsa 123",608013779);
- 
- 
- 
- 
+    public void llenarLista(List<Corredor> list){
+        list.add(c1);
+        list.add(c2);
+        list.add(c3);
+        list.add(c4);
+        list.add(c5);
+        list.add(c6);
+        list.add(c7);
+    }
+    
+    
+
     public void inicializarTabla(DefaultTableModel dtm, JTable table) {
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String[]{"Nombre", "DNI", "Fecha de Nacimiento", "Direccion", "Teléfono de contacto"});
@@ -55,7 +64,7 @@ public class Operaciones {
 
         lista.add(corredor);
     }
-    
+
     public void anadirCorredores(DefaultTableModel dtm, ArrayList<Corredor> lista, JTable table) {
         dtm = (DefaultTableModel) table.getModel();
 
@@ -86,13 +95,13 @@ public class Operaciones {
         System.out.println(dtm.getRowCount());
     }
 
-    
-     public void modificarCorredor(Corredor corredor, ArrayList<Corredor> lista, Integer index) {
-         System.out.println("Hoal");
+    public void modificarCorredor(Corredor corredor, ArrayList<Corredor> lista, Integer index) {
+
         lista.set(index, corredor);
     }
-     /*carreras*/
-      public void inicializarTablaCarrera(DefaultTableModel dtm, JTable table) {
+
+    /*CARRERAS*/
+    public void inicializarTablaCarrera(DefaultTableModel dtm, JTable table) {
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String[]{"Nombre", "Fecha de la carrera",
             "Lugar de la carrera", "Número máximo de participantes",
@@ -100,7 +109,8 @@ public class Operaciones {
         table.setModel(dtm);
         //anadirCorredores(dtm, lista, jTableCorredores);
     }
-      public void inicializarTablaBajaCarrera(DefaultTableModel dtm, JTable table) {
+
+    public void inicializarTablaBajaCarrera(DefaultTableModel dtm, JTable table) {
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String[]{"ID", "Nombre", "Fecha de la carrera",
             "Lugar de la carrera", "Número máximo de participantes",
@@ -108,11 +118,12 @@ public class Operaciones {
         table.setModel(dtm);
         //anadirCorredores(dtm, lista, jTableCorredores);
     }
-     public void anadirCarrera(Carrera carrera, ArrayList<Carrera> lista) {
+
+    public void anadirCarrera(Carrera carrera, ArrayList<Carrera> lista) {
         lista.add(carrera);
     }
-     
-     public void anadirCarreras(DefaultTableModel dtm, ArrayList<Carrera> lista, JTable table) {
+
+    public void anadirCarreras(DefaultTableModel dtm, ArrayList<Carrera> lista, JTable table) {
         dtm = (DefaultTableModel) table.getModel();
 
         if (dtm.getRowCount() > 0) {
@@ -125,8 +136,8 @@ public class Operaciones {
             dtm.addRow(lista.get(i).toArrayString());
         }
     }
-     
-        public void anadirCarrerasId(DefaultTableModel dtm, ArrayList<Carrera> lista, JTable table) {
+
+    public void anadirCarrerasId(DefaultTableModel dtm, ArrayList<Carrera> lista, JTable table) {
 
         dtm = (DefaultTableModel) table.getModel();
 
@@ -141,35 +152,41 @@ public class Operaciones {
         }
         System.out.println(dtm.getRowCount());
     }
-     
-     public String corredoresToString(Map<Corredor,Dorsal> map){
-        String str="";
-        int i=0;
-         for (Map.Entry<Corredor,Dorsal> entry : map.entrySet())  {
-             
-         
-        str=  str.concat(entry.getKey().getNombre() + ",");
-         
+
+    public void modificarCarrera(Carrera carrera, ArrayList<Carrera> lista, Integer index) {
+
+        lista.set(index, carrera);
     }
-         str = str.substring(0,str.length()-1);
-          System.out.println(str);
-          return str;
-         
-     }
-     
-     public void llenarJList(DefaultListModel<Corredor> listModel){
-         listModel.addElement(c1);
-         listModel.addElement(c2);
-         listModel.addElement(c3);
-         listModel.addElement(c4);
-         listModel.addElement(c5);
-         listModel.addElement(c6);
-         listModel.addElement(c7);
-         
-         
-         
-     }
-    
+
+    public String corredoresToString(Map<Corredor, Dorsal> map) {
+        String str = "";
+        int i = 0;
+        for (Map.Entry<Corredor, Dorsal> entry : map.entrySet()) {
+
+            str = str.concat(entry.getKey().getNombre() + ",");
+
+        }
+        str = str.substring(0, str.length() - 1);
+        System.out.println(str);
+        return str;
+
+    }
+
+    public void llenarJList(DefaultListModel<Corredor> listModel, List<Corredor> lista) {
+        for(Corredor c : lista){
+            listModel.addElement(c);
+            
+        }
+        /*listModel.addElement(c1);
+        listModel.addElement(c2);
+        listModel.addElement(c3);
+        listModel.addElement(c4);
+        listModel.addElement(c5);
+        listModel.addElement(c6);
+        listModel.addElement(c7);*/
+
+    }
+
     /* public void toolTip(JTable table, MouseEvent e){
          for(int i=0;i<table.getRowCount();i++){
              

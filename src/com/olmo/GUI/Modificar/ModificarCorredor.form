@@ -23,47 +23,46 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonModificar" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelDni" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelDir" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelTlf" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelFecha" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextFieldNombre" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldDni" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldFecha" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="jTextFieldDir" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
-                          <Component id="jTextFieldTlf" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                              <Component id="jLabelErrorFecha" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
-                              <Component id="jLabelErrorTlf" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelErrorDir" min="-2" pref="147" max="-2" attributes="0"/>
-                              <Component id="jLabelErrorDni" min="-2" pref="141" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabelErrorNombre" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace pref="98" max="32767" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonModificar" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelDni" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelDir" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelTlf" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelFecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jTextFieldNombre" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTextFieldDni" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTextFieldFecha" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jTextFieldDir" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldTlf" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Component id="jLabelErrorFecha" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                                      <Component id="jLabelErrorTlf" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelErrorDir" min="-2" pref="147" max="-2" attributes="0"/>
+                                      <Component id="jLabelErrorDni" min="-2" pref="141" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabelErrorNombre" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
                       <Component id="jLabelTitulo" min="-2" pref="406" max="-2" attributes="0"/>

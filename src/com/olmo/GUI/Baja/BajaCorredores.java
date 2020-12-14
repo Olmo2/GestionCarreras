@@ -6,6 +6,7 @@
 package com.olmo.GUI.Baja;
 
 import com.olmo.GUI.Corredores;
+import com.olmo.GUI.Principal;
 import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Corredores.Corredor;
 import java.util.ArrayList;
@@ -23,15 +24,17 @@ public class BajaCorredores extends javax.swing.JDialog {
      * Creates new form BajaCorredores
      */
     Corredores corredores;
+    Principal principal;
     Operaciones op;
     public BajaCorredores(java.awt.Frame parent,JDialog dialog, boolean modal) {
         super(parent, modal);
         corredores=(Corredores) dialog;
+        principal =(Principal)parent;
         initComponents();
          setLocationRelativeTo(null);
         op = new Operaciones();
         op.inicializarTablaBaja(dtm,jTableCorredores);
-        op.anadirCorredoresId(dtm, corredores.getLista(), jTableCorredores);
+        op.anadirCorredoresId(dtm,  principal.getListaCorredores(), jTableCorredores);
         
     }
     
@@ -162,15 +165,15 @@ public class BajaCorredores extends javax.swing.JDialog {
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
     
-       op.anadirCorredores(dtm, corredores.getLista(), corredores.getjTableCorredores());
+       op.anadirCorredores(dtm,  principal.getListaCorredores(), corredores.getjTableCorredores());
         this.dispose();
        
     }//GEN-LAST:event_jButtonVolverMouseClicked
 
     private void jButtonDarBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDarBajaMouseClicked
-        ArrayList<Corredor>lista = corredores.getLista();
+        ArrayList<Corredor>lista =  principal.getListaCorredores();
         lista.remove(Integer.parseInt(jTextFieldIDBorrar.getText())-1);
-        corredores.setLista(lista);
+        principal.setListaCorredores(lista);
         op.anadirCorredoresId(dtm, lista, jTableCorredores);
     }//GEN-LAST:event_jButtonDarBajaMouseClicked
 

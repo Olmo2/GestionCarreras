@@ -6,6 +6,7 @@
 package com.olmo.GUI.Modificar;
 
 import com.olmo.GUI.Corredores;
+import com.olmo.GUI.Principal;
 import com.olmo.logica.Operaciones;
 import com.olmo.negocio.Corredores.Corredor;
 import java.sql.Date;
@@ -22,6 +23,7 @@ public class ModificarCorredor extends javax.swing.JDialog {
     /**
      * Creates new form ModificarCorredor
      */
+    Principal principal;
       Corredores corredores;
       Corredor corredor;
       ModificarCorredores modificarCorredores;
@@ -34,8 +36,9 @@ public class ModificarCorredor extends javax.swing.JDialog {
         super(parent, modal);
                 this.index=index;
             corredores = (Corredores)dialog;
+            principal = (Principal)parent;
             modificarCorredores = (ModificarCorredores)dialog2;
-         corredor = corredores.getLista().get(index);
+         corredor =  principal.getListaCorredores().get(index);
          op = new Operaciones();
         initComponents();
          setLocationRelativeTo(null);
@@ -333,9 +336,9 @@ public class ModificarCorredor extends javax.swing.JDialog {
             Corredor corredor = new Corredor(jTextFieldNombre.getText(), jTextFieldDni.getText(), date,
                 jTextFieldDir.getText(), Integer.parseInt(jTextFieldTlf.getText()));
             System.out.println(corredor);
-             System.out.println(corredores.getLista());
-            op.modificarCorredor(corredor, corredores.getLista(), index);
-            op.anadirCorredores(corredores.getDtm(), corredores.getLista(), modificarCorredores.getjTableCorredores());
+             System.out.println( principal.getListaCorredores());
+            op.modificarCorredor(corredor,  principal.getListaCorredores(), index);
+            op.anadirCorredores(corredores.getDtm(),  principal.getListaCorredores(), modificarCorredores.getjTableCorredores());
             
             this.dispose();
         } else {

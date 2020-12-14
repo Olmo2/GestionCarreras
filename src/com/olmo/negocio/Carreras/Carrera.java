@@ -16,7 +16,7 @@ public class Carrera {
     private Integer maxPart;
     private Map<Corredor, Dorsal> corredores;
     private Map<Corredor, Dorsal> corredoresLlegada;
-    private Boolean Started;
+    private Boolean Started =false;
 
     public Carrera() {
         super();

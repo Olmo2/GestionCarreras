@@ -45,7 +45,7 @@ public class AltaCarreras extends javax.swing.JDialog {
         jListParticipantes.setSelectedIndices(s);
          setLocationRelativeTo(null);
          listModel = new DefaultListModel();
-         op.llenarJList(listModel);
+         op.llenarJList(listModel, principal.getListaCorredores());
          jListParticipantes.setModel(listModel);
          jListParticipantes.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
           validNombre= validMax= validFecha= validLugar= validLista=false;
@@ -275,8 +275,10 @@ public class AltaCarreras extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(79, 79, 79)))
                         .addGap(23, 23, 23)))
                 .addComponent(jButtonAlta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -344,8 +346,8 @@ public class AltaCarreras extends javax.swing.JDialog {
             }
             Carrera carrera = new Carrera(jTextFieldNombre.getText(),date,jTextFieldLugar.getText(),
                     Integer.parseInt(jTextFieldMax.getText()),map, map);
-            op.anadirCarrera(carrera, principal.getLista());
-            op.anadirCarreras(principal.getDtm(), principal.getLista(), principal.getjTableCarreras());
+            op.anadirCarrera(carrera, principal.getListaCarreras());
+            op.anadirCarreras(principal.getDtm(), principal.getListaCarreras(), principal.getjTableCarreras());
             System.out.println(carrera);
            
             this.dispose();
@@ -355,7 +357,7 @@ public class AltaCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAltaMouseClicked
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
-        op.anadirCarreras(principal.getDtm(), principal.getLista(), principal.getjTableCarreras());
+        op.anadirCarreras(principal.getDtm(), principal.getListaCarreras(), principal.getjTableCarreras());
         this.dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
 

@@ -31,7 +31,7 @@ public class BajaCarreras extends javax.swing.JDialog {
          setLocationRelativeTo(null);
         op = new Operaciones();
         op.inicializarTablaBaja(dtm,jTableCorredores);
-        op.anadirCarrerasId(dtm, principal.getLista(), jTableCorredores);
+        op.anadirCarrerasId(dtm, principal.getListaCarreras(), jTableCorredores);
     }
 
     /**
@@ -152,9 +152,9 @@ public class BajaCarreras extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDarBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDarBajaMouseClicked
-        ArrayList<Carrera>lista = principal.getLista();
+        ArrayList<Carrera>lista = principal.getListaCarreras();
         lista.remove(Integer.parseInt(jTextFieldIDBorrar.getText())-1);
-        principal.setLista(lista);
+        principal.setListaCarreras(lista);
         op.anadirCarrerasId(dtm, lista, jTableCorredores);
     }//GEN-LAST:event_jButtonDarBajaMouseClicked
 
@@ -164,7 +164,7 @@ public class BajaCarreras extends javax.swing.JDialog {
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
 
-        op.anadirCarreras(dtm, principal.getLista(), principal.getjTableCarreras());
+        op.anadirCarreras(dtm, principal.getListaCarreras(), principal.getjTableCarreras());
         this.dispose();
 
     }//GEN-LAST:event_jButtonVolverMouseClicked

@@ -5,13 +5,12 @@
  */
 package com.olmo.GUI.Modificar;
 
-import com.olmo.GUI.Corredores;
-import com.olmo.GUI.Modificar.ModificarCorredor;
 import com.olmo.GUI.Principal;
 import com.olmo.logica.Operaciones;
+import com.olmo.negocio.Carreras.Carrera;
 import com.olmo.negocio.Corredores.Corredor;
 import java.util.ArrayList;
-import javax.swing.JDialog;
+import javax.swing.DefaultListModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,25 +18,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author OLMO
  */
-public class ModificarCorredores extends javax.swing.JDialog {
+public class ModificarCarreras extends javax.swing.JDialog {
 
     /**
-     * Creates new form ModificarCorredores
+     * Creates new form ModificarCarreras
      */
-    DefaultTableModel dtm;
     Principal principal;
-    Corredores corredores;
-    ModificarCorredor modificarCorredor;
     Operaciones op;
-    public ModificarCorredores(java.awt.Frame parent,JDialog dialog, boolean modal) {
+    ModificarCarrera modificarCarrera;
+    DefaultTableModel dtm;
+   
+    
+    public ModificarCarreras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         principal = (Principal)parent;
-         corredores=(Corredores) dialog;
-        initComponents();
-         setLocationRelativeTo(null);
         op = new Operaciones();
-        op.inicializarTablaBaja(dtm,jTableCorredores);
-        op.anadirCorredoresId(dtm,  principal.getListaCorredores(), jTableCorredores);
+        initComponents();
+        setLocationRelativeTo(null);
+        op.inicializarTablaBajaCarrera(dtm,jTableCarreras);
+        op.anadirCarrerasId(dtm, principal.getListaCarreras(), jTableCarreras);
     }
 
     /**
@@ -49,26 +48,43 @@ public class ModificarCorredores extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelTitulo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCorredores = new javax.swing.JTable();
         jButtonModificar = new javax.swing.JButton();
         jTextFieldIDModificar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButtonVolver = new javax.swing.JButton();
+        jLabelTitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCarreras = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
+
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonModificarMouseClicked(evt);
+            }
+        });
+
+        jTextFieldIDModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIDModificarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Introduce el id de la carrera que quieres modificar");
+
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonVolverMouseClicked(evt);
             }
         });
 
         jLabelTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Modificar Corredores");
+        jLabelTitulo.setText("Modificar Carreras");
 
-        jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCarreras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -94,53 +110,29 @@ public class ModificarCorredores extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableCorredores);
-
-        jButtonModificar.setText("Modificar");
-        jButtonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonModificarMouseClicked(evt);
-            }
-        });
-
-        jTextFieldIDModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldIDModificarActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Introduce el id del corredor que quieres modificar");
-
-        jButtonVolver.setText("Volver");
-        jButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonVolverMouseClicked(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jTableCarreras);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(118, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122))
+                        .addGap(221, 221, 221))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldIDModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldIDModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(109, 109, 109))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,27 +141,25 @@ public class ModificarCorredores extends javax.swing.JDialog {
                 .addComponent(jButtonVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonModificar)
                     .addComponent(jTextFieldIDModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarMouseClicked
-        ArrayList<Corredor>lista =  principal.getListaCorredores();
+        ArrayList<Carrera>lista = principal.getListaCarreras();
         int i=Integer.parseInt(jTextFieldIDModificar.getText())-1;
         lista.get(i);
-        modificarCorredor = new ModificarCorredor(principal,corredores,this,i,true);
-        modificarCorredor.setVisible(true);
-        
-        
+        modificarCarrera = new ModificarCarrera(principal,this,i,true);
+        modificarCarrera.setVisible(true);
     }//GEN-LAST:event_jButtonModificarMouseClicked
 
     private void jTextFieldIDModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDModificarActionPerformed
@@ -177,24 +167,10 @@ public class ModificarCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldIDModificarActionPerformed
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
-        op.anadirCorredores(corredores.getDtm(), principal.getListaCorredores(), corredores.getjTableCorredores());
+        op.anadirCarreras(principal.getDtm(), principal.getListaCarreras(), principal.getjTableCarreras());
         this.dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-         op.anadirCorredores(corredores.getDtm(),  principal.getListaCorredores(), corredores.getjTableCorredores());
-    }//GEN-LAST:event_formWindowClosed
-
-    public JTable getjTableCorredores() {
-        return jTableCorredores;
-    }
-
-    public void setjTableCorredores(JTable jTableCorredores) {
-        this.jTableCorredores = jTableCorredores;
-    }
-
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -212,20 +188,20 @@ public class ModificarCorredores extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModificarCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCarreras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModificarCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCarreras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModificarCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCarreras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModificarCorredores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarCarreras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ModificarCorredores dialog = new ModificarCorredores(new javax.swing.JFrame(), new JDialog(), true);
+                ModificarCarreras dialog = new ModificarCarreras(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -236,6 +212,14 @@ public class ModificarCorredores extends javax.swing.JDialog {
             }
         });
     }
+
+    public JTable getjTableCarreras() {
+        return jTableCarreras;
+    }
+
+    public void setjTableCarreras(JTable jTableCarreras) {
+        this.jTableCarreras = jTableCarreras;
+    }
     
     
 
@@ -245,7 +229,7 @@ public class ModificarCorredores extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCorredores;
+    private javax.swing.JTable jTableCarreras;
     private javax.swing.JTextField jTextFieldIDModificar;
     // End of variables declaration//GEN-END:variables
 }
