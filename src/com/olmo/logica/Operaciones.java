@@ -47,14 +47,28 @@ public class Operaciones {
     
 
     public void inicializarTabla(DefaultTableModel dtm, JTable table) {
-        dtm = new DefaultTableModel();
+        dtm = new DefaultTableModel() {
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+       //all cells false
+       return false;
+    }
+};
         dtm.setColumnIdentifiers(new String[]{"Nombre", "DNI", "Fecha de Nacimiento", "Direccion", "Teléfono de contacto"});
         table.setModel(dtm);
         //anadirCorredores(dtm, lista, jTableCorredores);
     }
 
     public void inicializarTablaBaja(DefaultTableModel dtm, JTable table) {
-        dtm = new DefaultTableModel();
+        dtm =new DefaultTableModel() {
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+       //all cells false
+       return false;
+    }
+};
         dtm.setColumnIdentifiers(new String[]{"ID", "Nombre", "DNI", "Fecha de Nacimiento", "Direccion", "Teléfono de contacto"});
         table.setModel(dtm);
         //anadirCorredores(dtm, lista, jTableCorredores);
@@ -102,7 +116,14 @@ public class Operaciones {
 
     /*CARRERAS*/
     public void inicializarTablaCarrera(DefaultTableModel dtm, JTable table) {
-        dtm = new DefaultTableModel();
+        dtm = new DefaultTableModel() {
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+       //all cells false
+       return false;
+    }
+};
         dtm.setColumnIdentifiers(new String[]{"Nombre", "Fecha de la carrera",
             "Lugar de la carrera", "Número máximo de participantes",
             "Corredores"});

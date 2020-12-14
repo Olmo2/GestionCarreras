@@ -46,13 +46,14 @@ public class Corredores extends javax.swing.JDialog {
           setLocationRelativeTo(null);
           op =new Operaciones();
          date= new Date(99,8,23);
-        corredor =new Corredor("Olmo","71729223C",date,"C/Falsa 123",608013779);
+       /* corredor =new Corredor("Olmo","71729223C",date,"C/Falsa 123",608013779);
         
-        principal.getListaCorredores().add(corredor);
+        principal.getListaCorredores().add(corredor);*/
         op.inicializarTabla(dtm,jTableCorredores);
-        //inicializarTabla(dtm,jTableCorredores);
         op.anadirCorredores(dtm,  principal.getListaCorredores(), jTableCorredores);
         
+         
+       
     }
 
   

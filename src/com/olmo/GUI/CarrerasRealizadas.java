@@ -5,6 +5,8 @@
  */
 package com.olmo.GUI;
 
+import com.olmo.logica.Operaciones;
+
 /**
  *
  * @author OLMO
@@ -14,9 +16,15 @@ public class CarrerasRealizadas extends javax.swing.JDialog {
     /**
      * Creates new form CarrerasRealizadas
      */
+    Principal principal;
+    Operaciones op;
+
     public CarrerasRealizadas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+         principal=(Principal)parent;
         initComponents();
+         op =new Operaciones();
+          setLocationRelativeTo(null);
     }
 
     /**
@@ -28,21 +36,80 @@ public class CarrerasRealizadas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonVolver = new javax.swing.JButton();
+        jLabelCorredores = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCarreras = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonVolverMouseClicked(evt);
+            }
+        });
+
+        jLabelCorredores.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabelCorredores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCorredores.setText("Carreras Realizadas");
+
+        jTableCarreras.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Fecha de la carrera", "Lugar de la carrera", "Número máximo de participantes", "Corredores"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableCarreras.setToolTipText("");
+        jScrollPane1.setViewportView(jTableCarreras);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonVolver))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jButtonVolverMouseClicked
 
     /**
      * @param args the command line arguments
@@ -87,5 +154,9 @@ public class CarrerasRealizadas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabelCorredores;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableCarreras;
     // End of variables declaration//GEN-END:variables
 }
