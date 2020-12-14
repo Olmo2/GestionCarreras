@@ -345,7 +345,7 @@ public class AltaCarreras extends javax.swing.JDialog {
                 map.put(corredor,new Dorsal(0,0));
             }
             Carrera carrera = new Carrera(jTextFieldNombre.getText(),date,jTextFieldLugar.getText(),
-                    Integer.parseInt(jTextFieldMax.getText()),map, map);
+                    Integer.parseInt(jTextFieldMax.getText()),map);
             op.anadirCarrera(carrera, principal.getListaCarreras());
             op.anadirCarreras(principal.getDtm(), principal.getListaCarreras(), principal.getjTableCarreras());
             System.out.println(carrera);

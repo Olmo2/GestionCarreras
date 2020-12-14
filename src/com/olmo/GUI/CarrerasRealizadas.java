@@ -6,6 +6,10 @@
 package com.olmo.GUI;
 
 import com.olmo.logica.Operaciones;
+import com.olmo.negocio.Carreras.Carrera;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,13 +22,20 @@ public class CarrerasRealizadas extends javax.swing.JDialog {
      */
     Principal principal;
     Operaciones op;
+    DefaultTableModel dtm;
 
     public CarrerasRealizadas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
          principal=(Principal)parent;
         initComponents();
+        dtm=new DefaultTableModel();
          op =new Operaciones();
           setLocationRelativeTo(null);
+          op.inicializarTablaCarrera(dtm, jTableCarreras);
+         for(Carrera c: principal.getListaCarrerasRealizadas()){
+             System.err.println(c);
+         }
+          op.anadirCarreras(dtm, principal.getListaCarrerasRealizadas(), jTableCarreras);
     }
 
     /**
@@ -81,7 +92,7 @@ public class CarrerasRealizadas extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabelCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -89,7 +100,7 @@ public class CarrerasRealizadas extends javax.swing.JDialog {
                         .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38))))
         );
         layout.setVerticalGroup(
@@ -108,6 +119,7 @@ public class CarrerasRealizadas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
+       op.anadirCarreras(principal.getDtm(), principal.getListaCarreras(), principal.getjTableCarreras());
         this.dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
 

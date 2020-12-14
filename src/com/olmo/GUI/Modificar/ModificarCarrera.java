@@ -73,6 +73,7 @@ public class ModificarCarrera extends javax.swing.JDialog {
         jLabelErrorMax.setVisible(false);
         jLabelErrorLista.setVisible(false);
         jLabelErrores.setVisible(false);
+        
     }
 
     /**
@@ -106,6 +107,7 @@ public class ModificarCarrera extends javax.swing.JDialog {
         jLabelCorredoresActuales = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabelCorredoresActualesLlenar = new javax.swing.JLabel();
+        jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -189,6 +191,18 @@ public class ModificarCarrera extends javax.swing.JDialog {
 
         jLabelCorredoresActualesLlenar.setText("jLabel2");
 
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonVolverMouseClicked(evt);
+            }
+        });
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,7 +210,9 @@ public class ModificarCarrera extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(184, 184, 184))
+                .addGap(38, 38, 38)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -250,8 +266,13 @@ public class ModificarCarrera extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jButtonVolver)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -390,6 +411,15 @@ public class ModificarCarrera extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jListParticipantesValueChanged
 
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+
+    private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
+       op.anadirCarreras(principal.getDtm(), principal.getListaCarreras(), principal.getjTableCarreras());
+       this.dispose();
+    }//GEN-LAST:event_jButtonVolverMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -434,6 +464,7 @@ public class ModificarCarrera extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCorredoresActuales;
     private javax.swing.JLabel jLabelCorredoresActualesLlenar;

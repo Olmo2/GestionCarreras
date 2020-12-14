@@ -15,30 +15,22 @@ public class Carrera {
     private String lugar;
     private Integer maxPart;
     private Map<Corredor, Dorsal> corredores;
-    private Map<Corredor, Dorsal> corredoresLlegada;
     private Boolean Started =false;
 
     public Carrera() {
         super();
     }
 
-    public Carrera(String Nombre, Date fecha, String lugar, Integer maxPart, Map<Corredor, Dorsal> corredoresLlegada, Map<Corredor, Dorsal> corredores) {
+    public Carrera(String Nombre, Date fecha, String lugar, Integer maxPart, Map<Corredor, Dorsal> corredores) {
         this.nombre = Nombre;
         this.fecha = fecha;
         this.lugar = lugar;
         this.maxPart = maxPart;
         this.corredores = corredores;
-        this.corredoresLlegada = corredoresLlegada;
 
     }
 
-    public Carrera(String nombre, Date fecha, String lugar, Integer maxPart, Map<Corredor, Dorsal> corredores) {
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.lugar = lugar;
-        this.maxPart = maxPart;
-        this.corredores = corredores;
-    }
+    
     
 
     public String getNombre() {
@@ -73,13 +65,7 @@ public class Carrera {
         this.maxPart = maxPart;
     }
 
-    public Map<Corredor, Dorsal> getCorredoresLlegada() {
-        return corredoresLlegada;
-    }
-
-    public void setCorredoresLlegada(Map<Corredor, Dorsal> corredoresLlegada) {
-        this.corredoresLlegada = corredoresLlegada;
-    }
+   
 
     public Map<Corredor, Dorsal> getCorredores() {
         return corredores;
@@ -122,22 +108,12 @@ public class Carrera {
         return values;
     }
     
-      public String[] toArrayStringTerminada() {
-        String[] values = new String[6];
-        values[0] = nombre;
-        values[1] = fecha.toString();
-        values[2] = lugar;
-        values[3] = maxPart.toString();
-        values[4] = op.corredoresToString(corredores);
-        values[5] = op.corredoresToString(corredoresLlegada);
-
-        return values;
-    }
+      
 
     @Override
     public String toString() {
         return "Carrera [Nombre=" + nombre + ", fecha=" + fecha + ", lugar=" + lugar + ", maxPart=" + maxPart
-                + ", corredoresLlegada=" + corredoresLlegada + ", corredores=" + corredores + "]";
+                 + ", corredores=" + corredores + "]";
     }
 
 }

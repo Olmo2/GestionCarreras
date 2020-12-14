@@ -27,8 +27,9 @@ public class RelojDigital extends JLabel implements Serializable
      */
     private boolean formato24=true;
     private Alarma alarma;
-      private Long start ;  
-      private Date horaActual;
+     private Long start ;
+     private Long end;
+      
       
       
     
@@ -42,6 +43,7 @@ public class RelojDigital extends JLabel implements Serializable
      * Listener de nuestro componente
      */
     private AlarmaListener alarmaListener;
+
     
     
     
@@ -51,34 +53,26 @@ public class RelojDigital extends JLabel implements Serializable
         //Aquí  metemos el método clave. Un timer que se ejecuta cada segundo para
         //actualizar la hora.
         Timer timer = new Timer();
-         horaActual = new Date();
-       start= horaActual.getTime();
+        
+         Date date = new Date();
+         start= date.getTime();
+       
      // now=  LocalDateTime.now();
             
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                
-                
-
+                 Date horaActual = new Date();
+                 end=horaActual.getTime();
                 //Decidimos con que formato mostramos la hora
-                if (formato24)
+                if (formato24){
                     setText(sdf24h.format(horaActual));
-                else
+                }else{
                     setText(sdf12h.format(horaActual));
-                
-                if (alarma!=null)
-                {
-                    //Si la condición de la alarma se activa, llamamos al listener
-                    if (alarma.isActiva() && horasCoinciden(horaActual,alarma.getHoraAlarma()))
-                    {
-                        if (alarmaListener!=null)
-                        {
-                            alarmaListener.suenaAlarma();
-                        }
-                    }
                 }
-            }
+               
+                }
+            
         }, 0, 1000);
     }
 
@@ -106,15 +100,17 @@ public class RelojDigital extends JLabel implements Serializable
         this.start = start;
     }
 
+    public Long getEnd() {
+        return end;
+    }
+
+    public void setEnd(Long end) {
+        this.end = end;
+    }
+
    
 
-    public Date getHoraActual() {
-        return horaActual;
-    }
-
-    public void setHoraActual(Date horaActual) {
-        this.horaActual = horaActual;
-    }
+    
     
        
     public void addAlarmaListener(AlarmaListener alarmaListener)

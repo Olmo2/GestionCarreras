@@ -12,6 +12,8 @@ import com.olmo.negocio.Corredores.Dorsal;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultListModel;
@@ -33,8 +35,8 @@ public class Operaciones {
     Corredor c6 = new Corredor("Qui-Gon Jinn", "71729223C", new Date(99, 05, 28), "C/Falsa 123", 608013779);
     Corredor c7 = new Corredor("Obi-Wan Kenobi", "71729223C", new Date(99, 05, 28), "C/Falsa 123", 608013779);
     List<Corredor> list = new ArrayList<Corredor>();
-    
-    public void llenarLista(List<Corredor> list){
+
+    public void llenarLista(List<Corredor> list) {
         list.add(c1);
         list.add(c2);
         list.add(c3);
@@ -43,32 +45,30 @@ public class Operaciones {
         list.add(c6);
         list.add(c7);
     }
-    
-    
 
     public void inicializarTabla(DefaultTableModel dtm, JTable table) {
         dtm = new DefaultTableModel() {
 
-    @Override
-    public boolean isCellEditable(int row, int column) {
-       //all cells false
-       return false;
-    }
-};
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
         dtm.setColumnIdentifiers(new String[]{"Nombre", "DNI", "Fecha de Nacimiento", "Direccion", "Teléfono de contacto"});
         table.setModel(dtm);
         //anadirCorredores(dtm, lista, jTableCorredores);
     }
 
     public void inicializarTablaBaja(DefaultTableModel dtm, JTable table) {
-        dtm =new DefaultTableModel() {
+        dtm = new DefaultTableModel() {
 
-    @Override
-    public boolean isCellEditable(int row, int column) {
-       //all cells false
-       return false;
-    }
-};
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
         dtm.setColumnIdentifiers(new String[]{"ID", "Nombre", "DNI", "Fecha de Nacimiento", "Direccion", "Teléfono de contacto"});
         table.setModel(dtm);
         //anadirCorredores(dtm, lista, jTableCorredores);
@@ -118,13 +118,29 @@ public class Operaciones {
     public void inicializarTablaCarrera(DefaultTableModel dtm, JTable table) {
         dtm = new DefaultTableModel() {
 
-    @Override
-    public boolean isCellEditable(int row, int column) {
-       //all cells false
-       return false;
-    }
-};
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
         dtm.setColumnIdentifiers(new String[]{"Nombre", "Fecha de la carrera",
+            "Lugar de la carrera", "Número máximo de participantes",
+            "Corredores"});
+        table.setModel(dtm);
+        //anadirCorredores(dtm, lista, jTableCorredores);
+    }
+
+    public void inicializarTablaCarreraId(DefaultTableModel dtm, JTable table) {
+        dtm = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        dtm.setColumnIdentifiers(new String[]{"ID", "Nombre", "Fecha de la carrera",
             "Lugar de la carrera", "Número máximo de participantes",
             "Corredores"});
         table.setModel(dtm);
@@ -142,6 +158,22 @@ public class Operaciones {
 
     public void anadirCarrera(Carrera carrera, ArrayList<Carrera> lista) {
         lista.add(carrera);
+    }
+
+    public void anadirCarreraRealizada(DefaultTableModel dtm, Carrera carrera, JTable table) {
+        dtm = (DefaultTableModel) table.getModel();
+        Map<Corredor, Dorsal> map = new HashMap<>();
+        if (dtm.getRowCount() > 0) {
+            for (int i = dtm.getRowCount() - 1; i > -1; i--) {
+                dtm.removeRow(i);
+            }
+        }
+        map = carrera.getCorredores();
+        for (Map.Entry<Corredor, Dorsal> entry : map.entrySet()) {
+            String[] str = {entry.getKey().toString(), "", ""};
+            dtm.addRow(str);
+        }
+
     }
 
     public void anadirCarreras(DefaultTableModel dtm, ArrayList<Carrera> lista, JTable table) {
@@ -182,8 +214,9 @@ public class Operaciones {
     public String corredoresToString(Map<Corredor, Dorsal> map) {
         String str = "";
         int i = 0;
+        
         for (Map.Entry<Corredor, Dorsal> entry : map.entrySet()) {
-
+             
             str = str.concat(entry.getKey().getNombre() + ",");
 
         }
@@ -192,11 +225,25 @@ public class Operaciones {
         return str;
 
     }
+    
+    public void inicializarTablaCarreraRealizadas(DefaultTableModel dtm, JTable table) {
+        dtm = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        dtm.setColumnIdentifiers(new String[]{"Corredor","Tiempo","Dorsal"});
+        table.setModel(dtm);
+        //anadirCorredores(dtm, lista, jTableCorredores);
+    }
 
     public void llenarJList(DefaultListModel<Corredor> listModel, List<Corredor> lista) {
-        for(Corredor c : lista){
+        for (Corredor c : lista) {
             listModel.addElement(c);
-            
+
         }
         /*listModel.addElement(c1);
         listModel.addElement(c2);

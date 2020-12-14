@@ -211,6 +211,7 @@ public class Corredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
+op.anadirCarreras(principal.getDtm(), principal.getListaCarreras(), principal.getjTableCarreras());
         this.dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
 

@@ -8,6 +8,12 @@ package com.olmo.GUI.Realizar;
 import com.olmo.GUI.Principal;
 import com.olmo.logica.Operaciones;
 import javax.swing.table.DefaultTableModel;
+import  com.olmo.negocio.Corredores.Corredor;
+import com.olmo.negocio.Corredores.Dorsal;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
 
 /**
  *
@@ -20,12 +26,32 @@ public class RealizarCarreras extends javax.swing.JDialog {
      */
     Principal principal;
     Operaciones op;
+    RealizarCarrera rc;
     int clickCount;
-    DefaultTableModel dtm;
-    public RealizarCarreras(java.awt.Frame parent, boolean modal) {
+    DefaultTableModel dtm = new DefaultTableModel();
+    DefaultListModel<Corredor> listModel;
+    Dorsal d;
+    
+    public RealizarCarreras(java.awt.Frame parent,JDialog dialog, boolean modal) {
         super(parent, modal);
+        d=new Dorsal();
+        
          principal=(Principal)parent;
+         rc=(RealizarCarrera)dialog;
+          listModel = new DefaultListModel();
+          
+          dtm=rc.getDtm();
         initComponents();
+        setLocationRelativeTo(null);
+        jTextFieldTiempo.setText(String.valueOf(rc.res));
+        
+      
+       
+      
+        for(Corredor c: rc.lista){
+            listModel.addElement(c);
+        }
+       
     }
 
     /**
@@ -38,144 +64,107 @@ public class RealizarCarreras extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCarreras = new javax.swing.JTable();
-        jButtonDarBaja = new javax.swing.JButton();
-        jTextFieldIDBorrar = new javax.swing.JTextField();
-        jButtonVolver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jTextFieldTiempo = new javax.swing.JTextField();
+        jTextFieldDorsal = new javax.swing.JTextField();
+        jButtonGuardar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListCorredores = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Realizar Carreras");
+        jLabel1.setText("Tiempo: ");
 
-        jTableCarreras.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nombre", "Fecha de la carrera", "Lugar de la carrera", "Número máximo de participantes", "Corredores"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
+        jLabel2.setText("Dorsal");
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
+        jTextFieldTiempo.setEditable(false);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableCarreras.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableCarrerasMouseClicked(evt);
+                jButtonGuardarMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableCarreras);
-
-        jButtonDarBaja.setText("Realizar");
-        jButtonDarBaja.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonDarBajaMouseClicked(evt);
-            }
-        });
-
-        jTextFieldIDBorrar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldIDBorrarActionPerformed(evt);
+                jButtonGuardarActionPerformed(evt);
             }
         });
 
-        jButtonVolver.setText("Volver");
-        jButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonVolverMouseClicked(evt);
-            }
-        });
-
-        jLabel2.setText("Intrroduce el id de la carrera que quieres realizar");
+        jListCorredores.setModel(listModel);
+        jListCorredores.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jListCorredores);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldIDBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDarBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDorsal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonVolver)
-                .addGap(3, 3, 3)
-                .addComponent(jLabel1)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonDarBaja)
-                    .addComponent(jTextFieldIDBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextFieldTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextFieldDorsal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonDarBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDarBajaMouseClicked
-     
-    }//GEN-LAST:event_jButtonDarBajaMouseClicked
-
-    private void jTextFieldIDBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDBorrarActionPerformed
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIDBorrarActionPerformed
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
-    private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
-        op.anadirCarreras(dtm, principal.getListaCarreras(), principal.getjTableCarreras());
-        this.dispose();
-    }//GEN-LAST:event_jButtonVolverMouseClicked
-
-    private void jTableCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCarrerasMouseClicked
-      if (clickCount == 2) {
-            int row = jTableCarreras.getSelectedRow();
-            int col = jTableCarreras.getSelectedColumn();
-            for(int i = 0;i<jTableCarreras.getColumnCount();i++){
-                 System.err.println(jTableCarreras.getValueAt(row, i));
-            }
-           
-            clickCount = 0;
-        } else {
-            clickCount++;
+    private void jButtonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGuardarMouseClicked
+        dtm = (DefaultTableModel) rc.getjTable1().getModel();
+        String nombre= jListCorredores.getSelectedValue().getNombre();
+        int index= jListCorredores.getSelectedIndex();
+        String tiempo=jTextFieldTiempo.getText();
+        String dorsal =jTextFieldDorsal.getText();
+        
+        for(int i =0;i<dtm.getRowCount();i++){
+        if(dtm.getValueAt(i, 0).equals(nombre)){
+            dtm.removeRow(i);
         }
-    }//GEN-LAST:event_jTableCarrerasMouseClicked
+        }
+        String[] str  ={nombre,tiempo,dorsal};
+        dtm.addRow(str);
+        d = new Dorsal(Integer.parseInt(tiempo),Integer.parseInt(dorsal));
+        rc.map.put( jListCorredores.getSelectedValue(),d);
+        listModel.remove(index);
+        this.dispose();
+        
+        
+        
+    }//GEN-LAST:event_jButtonGuardarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -208,7 +197,7 @@ public class RealizarCarreras extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RealizarCarreras dialog = new RealizarCarreras(new javax.swing.JFrame(), true);
+                RealizarCarreras dialog = new RealizarCarreras(new javax.swing.JFrame(),new JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -221,12 +210,12 @@ public class RealizarCarreras extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonDarBaja;
-    private javax.swing.JButton jButtonVolver;
+    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JList<Corredor> jListCorredores;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCarreras;
-    private javax.swing.JTextField jTextFieldIDBorrar;
+    private javax.swing.JTextField jTextFieldDorsal;
+    private javax.swing.JTextField jTextFieldTiempo;
     // End of variables declaration//GEN-END:variables
 }
