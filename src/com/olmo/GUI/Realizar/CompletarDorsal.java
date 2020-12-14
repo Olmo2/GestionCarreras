@@ -8,7 +8,7 @@ package com.olmo.GUI.Realizar;
 import com.olmo.GUI.Principal;
 import com.olmo.logica.Operaciones;
 import javax.swing.table.DefaultTableModel;
-import  com.olmo.negocio.Corredores.Corredor;
+import com.olmo.negocio.Corredores.Corredor;
 import com.olmo.negocio.Corredores.Dorsal;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,28 +31,23 @@ public class CompletarDorsal extends javax.swing.JDialog {
     DefaultTableModel dtm = new DefaultTableModel();
     DefaultListModel<Corredor> listModel;
     Dorsal d;
-    
-    public CompletarDorsal(java.awt.Frame parent,JDialog dialog, boolean modal) {
+
+    public CompletarDorsal(java.awt.Frame parent, JDialog dialog, boolean modal) {
         super(parent, modal);
-        d=new Dorsal();
-        
-         principal=(Principal)parent;
-         op = new Operaciones();
-         rc=(RealizarCarrera)dialog;
-          listModel = new DefaultListModel();
-          
-          dtm=rc.getDtm();
+        d = new Dorsal();
+        principal = (Principal) parent;
+        op = new Operaciones();
+        rc = (RealizarCarrera) dialog;
+        dtm = rc.getDtm();
+        listModel = new DefaultListModel();
         initComponents();
         setLocationRelativeTo(null);
         jTextFieldTiempo.setText(String.valueOf(rc.res));
-        
-      
-       
-      
-        for(Corredor c: rc.lista){
+
+        for (Corredor c : rc.lista) {
             listModel.addElement(c);
         }
-       
+
     }
 
     /**
@@ -146,26 +141,25 @@ public class CompletarDorsal extends javax.swing.JDialog {
 
     private void jButtonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGuardarMouseClicked
         dtm = (DefaultTableModel) rc.getjTable1().getModel();
-        String nombre= jListCorredores.getSelectedValue().getNombre();
-        int index= jListCorredores.getSelectedIndex();
-        String tiempo=jTextFieldTiempo.getText();
-        String dorsal =jTextFieldDorsal.getText();
-        
-        for(int i =0;i<dtm.getRowCount();i++){
-        if(dtm.getValueAt(i, 0).equals(nombre)){
-            dtm.removeRow(i);
+        String nombre = jListCorredores.getSelectedValue().getNombre();
+        int index = jListCorredores.getSelectedIndex();
+        String tiempo = jTextFieldTiempo.getText();
+        String dorsal = jTextFieldDorsal.getText();
+
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            if (dtm.getValueAt(i, 0).equals(nombre)) {
+                dtm.removeRow(i);
+            }
         }
-        }
-        String[] str  ={nombre,tiempo,dorsal};
+        String[] str = {nombre, tiempo, dorsal};
         dtm.addRow(str);
-        d = new Dorsal(Integer.parseInt(tiempo),Integer.parseInt(dorsal));
-        rc.map.put( jListCorredores.getSelectedValue(),d);
+        d = new Dorsal(Integer.parseInt(tiempo), Integer.parseInt(dorsal));
+        rc.map.put(jListCorredores.getSelectedValue(), d);
         listModel.remove(index);
-       
+
         this.dispose();
-        
-        
-        
+
+
     }//GEN-LAST:event_jButtonGuardarMouseClicked
 
     /**
@@ -201,7 +195,7 @@ public class CompletarDorsal extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CompletarDorsal dialog = new CompletarDorsal(new javax.swing.JFrame(),new JDialog(), true);
+                CompletarDorsal dialog = new CompletarDorsal(new javax.swing.JFrame(), new JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
