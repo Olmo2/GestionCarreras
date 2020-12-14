@@ -95,6 +95,17 @@ public class Carrera {
 
         return values;
     }
+    public String[] toArrayStringDorsal() {
+        String[] values = new String[6];
+        values[0] = nombre;
+        values[1] = fecha.toString();
+        values[2] = lugar;
+        values[3] = maxPart.toString();
+        values[4] = op.corredoresDorsalToString(corredores);
+        
+
+        return values;
+    }
      public String[] toArrayString(Integer id) {
         String[] values = new String[6];
         values[0]= id.toString();

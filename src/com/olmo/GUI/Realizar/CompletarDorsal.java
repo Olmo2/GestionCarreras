@@ -19,7 +19,7 @@ import javax.swing.JDialog;
  *
  * @author OLMO
  */
-public class RealizarCarreras extends javax.swing.JDialog {
+public class CompletarDorsal extends javax.swing.JDialog {
 
     /**
      * Creates new form RealizarCarrera
@@ -32,11 +32,12 @@ public class RealizarCarreras extends javax.swing.JDialog {
     DefaultListModel<Corredor> listModel;
     Dorsal d;
     
-    public RealizarCarreras(java.awt.Frame parent,JDialog dialog, boolean modal) {
+    public CompletarDorsal(java.awt.Frame parent,JDialog dialog, boolean modal) {
         super(parent, modal);
         d=new Dorsal();
         
          principal=(Principal)parent;
+         op = new Operaciones();
          rc=(RealizarCarrera)dialog;
           listModel = new DefaultListModel();
           
@@ -160,6 +161,7 @@ public class RealizarCarreras extends javax.swing.JDialog {
         d = new Dorsal(Integer.parseInt(tiempo),Integer.parseInt(dorsal));
         rc.map.put( jListCorredores.getSelectedValue(),d);
         listModel.remove(index);
+       
         this.dispose();
         
         
@@ -183,21 +185,23 @@ public class RealizarCarreras extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RealizarCarreras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompletarDorsal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RealizarCarreras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompletarDorsal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RealizarCarreras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompletarDorsal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RealizarCarreras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompletarDorsal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RealizarCarreras dialog = new RealizarCarreras(new javax.swing.JFrame(),new JDialog(), true);
+                CompletarDorsal dialog = new CompletarDorsal(new javax.swing.JFrame(),new JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

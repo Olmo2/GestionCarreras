@@ -189,6 +189,20 @@ public class Operaciones {
             dtm.addRow(lista.get(i).toArrayString());
         }
     }
+     public void anadirCarrerasDorsal(DefaultTableModel dtm, ArrayList<Carrera> lista, JTable table) {
+        dtm = (DefaultTableModel) table.getModel();
+
+        if (dtm.getRowCount() > 0) {
+            for (int i = dtm.getRowCount() - 1; i > -1; i--) {
+                dtm.removeRow(i);
+            }
+        }
+
+        for (int i = 0; i < lista.size(); i++) {
+            dtm.addRow(lista.get(i).toArrayStringDorsal());
+        }
+    }
+
 
     public void anadirCarrerasId(DefaultTableModel dtm, ArrayList<Carrera> lista, JTable table) {
 
@@ -218,6 +232,24 @@ public class Operaciones {
         for (Map.Entry<Corredor, Dorsal> entry : map.entrySet()) {
              
             str = str.concat(entry.getKey().getNombre() + ",");
+
+        }
+        str = str.substring(0, str.length() - 1);
+        System.out.println(str);
+        return str;
+
+    }
+    public String corredoresDorsalToString(Map<Corredor, Dorsal> map) {
+        String str = "";
+        int i = 0;
+        
+        for (Map.Entry<Corredor, Dorsal> entry : map.entrySet()) {
+             
+            str = str.concat(entry.getKey().getNombre() 
+                    + " " + 
+                    entry.getValue().getTiempo().toString()
+                    + " " + 
+                    entry.getValue().getNumero().toString() + ",");
 
         }
         str = str.substring(0, str.length() - 1);

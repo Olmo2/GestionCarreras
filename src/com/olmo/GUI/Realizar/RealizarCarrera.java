@@ -33,7 +33,7 @@ public class RealizarCarrera extends javax.swing.JDialog {
     Date date;
     private DefaultTableModel dtm;
     Carrera carrera;
-    RealizarCarreras realizarCarreras;
+    CompletarDorsal realizarCarreras;
     Principal principal;
     Operaciones op;
     ArrayList<Corredor> lista;
@@ -50,6 +50,7 @@ public class RealizarCarrera extends javax.swing.JDialog {
         op= new Operaciones();
         dtm=new DefaultTableModel();
         initComponents();
+        setLocationRelativeTo(null);
         lista = new ArrayList<Corredor>();
         op.inicializarTablaCarreraRealizadas(dtm, jTable1);
         op.anadirCarreraRealizada(dtm, carrera, jTable1);
@@ -153,7 +154,7 @@ public class RealizarCarrera extends javax.swing.JDialog {
          res = end-start;
         System.out.println("Han pasado: " + res + " milisegundos");
         
-        realizarCarreras = new RealizarCarreras(principal, this, true);
+        realizarCarreras = new CompletarDorsal(principal, this, true);
         realizarCarreras.setVisible(true);
     }//GEN-LAST:event_relojDigitalMouseClicked
 
@@ -162,6 +163,7 @@ public class RealizarCarrera extends javax.swing.JDialog {
       carrera.setStarted(true);
       op.anadirCarrera(carrera, principal.getListaCarrerasRealizadas());
       principal.getListaCarreras().remove(carrera);
+      op.anadirCarrerasDorsal(principal.getDtm(), principal.getListaCarreras(), principal.getjTableCarreras());
       this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 

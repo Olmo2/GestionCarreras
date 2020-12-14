@@ -35,7 +35,7 @@ public class CarrerasRealizadas extends javax.swing.JDialog {
          for(Carrera c: principal.getListaCarrerasRealizadas()){
              System.err.println(c);
          }
-          op.anadirCarreras(dtm, principal.getListaCarrerasRealizadas(), jTableCarreras);
+          op.anadirCarrerasDorsal(dtm, principal.getListaCarrerasRealizadas(), jTableCarreras);
     }
 
     /**
